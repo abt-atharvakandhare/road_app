@@ -27,3 +27,13 @@ android/key.properties
 android/local.properties
 android/*.keystore
 android/*.jks
+.DS_Store
+
+# Flutter-generated iOS configuration
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/ephemeral/
+
+
+# Firebase generated metadata
+ios/firebase_app_id_file.json

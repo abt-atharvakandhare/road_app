@@ -1,0 +1,199 @@
+name: road_mobile
+description: The E-Flux/Road Mobile App.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 3.13.5+325
+
+environment:
+  sdk: '>=3.11.0 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  google_maps_flutter: ^2.5.3
+  injectable: ^3.0.0
+  flutter_bloc: ^9.0.0
+  get_it: ^9.0.5
+  json_annotation: ^4.9.0
+  dio: ^5.0.1
+  flutter_secure_storage: ^11.2.0
+  equatable: ^2.0.5
+  bloc_concurrency: ^0.3.0
+  bloc: ^9.0.0
+  freezed_annotation: ^3.0.0
+  maps_toolkit: ^3.0.0
+  collection: ^1.17.0
+  shared_preferences: ^2.0.0
+  flutter_svg: ^2.0.2
+  path_drawing: ^1.0.1
+  firebase_core: ^4.0.0
+  flutter_launcher_icons: ^0.14.1
+  webview_flutter: ^4.2.0
+  lottie: ^3.1.0
+  app_settings: ^9.0.0
+  flutter_fgbg: ^0.8.0
+  url_launcher: ^6.1.11
+  mobile_scanner: ^7.0.1
+  email_validator: ^3.0.0
+  firebase_analytics: ^12.0.0
+  flutter_localizations:
+    sdk: flutter
+  flutter_native_splash: ^2.3.2
+  month_picker_dialog: ^6.0.3
+  firebase_crashlytics: ^5.0.0
+  google_maps_flutter_android: ^2.5.1
+  google_maps_flutter_platform_interface: ^2.4.1
+  country_picker: ^2.0.22
+  geolocator: ^14.0.0
+  geocoding: ^5.0.0
+  crypto: ^3.0.3
+  flutter_timezone: ^5.0.0
+  map_launcher: ^6.0.0
+  phrase: ^2.5.2
+  intl: ^0.20.2
+  image: ^4.1.7
+  package_info_plus: ^10.2.1
+  shimmer: ^4.0.0
+  phone_numbers_parser: ^9.0.0
+  firebase_messaging: ^16.0.0
+  flutter_local_notifications: ^22.0.1
+  device_info_plus: ^13.2.0
+  pin_input_text_field: ^4.5.2
+  qr_flutter: ^4.1.0
+  flutter_file_dialog: ^3.0.2
+  intercom_flutter: ^9.2.5
+  flutter_dotenv: ^6.0.0
+  app_links: ^7.0.0
+  sms_autofill: ^2.4.1
+  mixpanel_flutter: ^2.11.0
+  biometric_storage: ^6.0.0-dev.5
+  firebase_app_check: ^0.4.5+2
+  share_plus: ^13.3.0
+  passkeys: ^2.22.1
+  google_places_sdk_plus: ^1.1.0
+
+dev_dependencies:
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.15
+  injectable_generator: ^3.0.2
+  json_serializable: ^6.9.4
+  freezed: ^4.0.1
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.4.2
+  mocktail: ^1.0.2
+  flutter_flavorizr: ^2.2.1
+  http_mock_adapter: ^0.6.0
+  bloc_test: ^10.0.0
+  plugin_platform_interface: ^2.1.8
+  integration_test:
+    sdk: flutter
+  # Patrol — pinned to a fork (e-flux-platform/patrol) until upstream
+  # merges the http4k bump. The published versions (4.5-4.6) crash on
+  # Android with `MobileAutomatorServerKt:53` NPE when the consuming app
+  # uses Kotlin 2.x dependencies (this project is on Kotlin 2.3.20 via the
+  # Compose plugin). See:
+  #   - upstream bug:  https://github.com/leancodepl/patrol/issues/2731
+  #   - upstream PR:   https://github.com/leancodepl/patrol/pull/2791
+  # Our fork branch (`experiment/http-proxy+road-mobile-fixes`) layers two
+  # patrol_cli bug fixes on top of the PR plus a fix for failed iOS tests
+  # being reported as passed (see binding.dart, upstream #1474). All are
+  # upstreamable. Revert to pub.dev `patrol: ^X.Y.Z` once upstream lands a
+  # release that includes #2791.
+  patrol:
+    git:
+      url: https://github.com/e-flux-platform/patrol.git
+      ref: 38adb874e54d8b509ecdbd63f4187f29a288a5c5
+      path: packages/patrol
+  fake_async: ^1.3.3
+
+patrol:
+  app_name: Road Mobile
+  test_directory: integration_test
+  android:
+    package_name: com.eflux.ev
+  ios:
+    bundle_id: com.e-flux.orange
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  generate: true
+
+  config:
+    enable-swift-package-manager: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/icons/
+    - assets/lottie/
+    - .env
+
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages

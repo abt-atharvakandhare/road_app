@@ -1,0 +1,7 @@
+flutter_native_splash:
+  background_image: "flavors/elexon/splash_screen_background.png"
+  image: flavors/elexon/splash_screen_logo.png
+  android_12:
+    image: flavors/elexon/android_splash_screen_logo.png
+    color: "#153E35"
+    icon_background_color: "#153E35"

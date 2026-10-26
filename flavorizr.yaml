@@ -1,0 +1,190 @@
+app:
+  android:
+    flavorDimensions: "flavor-type"
+
+flavors:
+  eflux:
+    app:
+      name: "E-Flux EV"
+      icon: "flavors/eflux/icon_1024.png"
+
+    android:
+      applicationId: "com.eflux.ev"
+      firebase:
+        config: "flavors/eflux/google-services.json"
+    ios:
+      bundleId: "com.e-flux.orange"
+      firebase:
+        config: "flavors/eflux/GoogleService-Info.plist"
+
+
+  elexon:
+    app:
+      name: "Elexon EV"
+      icon: "flavors/elexon/icon_1024.png"
+
+    android:
+      applicationId: "com.elexoncharging.android"
+      firebase:
+        config: "flavors/elexon/google-services.json"
+    ios:
+      bundleId: "com.elexon-charging.ios"
+      firebase:
+        config: "flavors/elexon/GoogleService-Info.plist"
+
+  opcharge:
+    app:
+      name: "Opcharge EV"
+      icon: "flavors/opcharge/icon_1024.png"
+
+    android:
+      applicationId: "com.opcharge.android"
+      firebase:
+        config: "flavors/opcharge/google-services.json"
+    ios:
+      bundleId: "com.opcharge.ios"
+      firebase:
+        config: "flavors/opcharge/GoogleService-Info.plist"
+
+  friwigo:
+    app:
+      name: "FRIWIGO EV"
+      icon: "flavors/friwigo/icon_1024.png"
+
+    android:
+      applicationId: "com.friwigo.android"
+      firebase:
+        config: "flavors/friwigo/google-services.json"
+    ios:
+      bundleId: "com.friwigo.ios"
+      firebase:
+        config: "flavors/friwigo/GoogleService-Info.plist"
+
+  ezdrive:
+    app:
+      name: "V-CiTY"
+      icon: "flavors/ezdrive/icon_1024.png"
+
+    android:
+      applicationId: "fr.ezdrive.android"
+      firebase:
+        config: "flavors/ezdrive/google-services.json"
+    ios:
+      bundleId: "fr.ezdrive.ios"
+      firebase:
+        config: "flavors/ezdrive/GoogleService-Info.plist"
+
+  nxt50five:
+    app:
+      name: "NXT 50five EV"
+      icon: "flavors/nxt50five/icon_1024.png"
+
+    android:
+      applicationId: "nl.nxt50five.android"
+      firebase:
+        config: "flavors/nxt50five/google-services.json"
+    ios:
+      bundleId: "nl.nxt50five.ios"
+      firebase:
+        config: "flavors/nxt50five/GoogleService-Info.plist"
+
+  ezdriveplus:
+    app:
+      name: "EZDrive+"
+      icon: "flavors/ezdriveplus/icon_1024.png"
+
+    android:
+      applicationId: "fr.ezdrive.plus.android"
+      firebase:
+        config: "flavors/ezdriveplus/google-services.json"
+    ios:
+      bundleId: "fr.ezdrive.plus.ios"
+      firebase:
+        config: "flavors/ezdriveplus/GoogleService-Info.plist"
+
+  vcityreunion:
+    app:
+      name: "V-City Réunion"
+      icon: "flavors/vcityreunion/icon_1024.png"
+
+    android:
+      applicationId: "com.vcityreunion.android"
+      firebase:
+        config: "flavors/vcityreunion/google-services.json"
+    ios:
+      bundleId: "com.vcityreunion.ios"
+      firebase:
+        config: "flavors/vcityreunion/GoogleService-Info.plist"
+
+  nxtmobility:
+    app:
+      name: "NXT Charge"
+      icon: "flavors/nxtmobility/icon_1024.png"
+
+    android:
+      applicationId: "com.nxtmobility.android"
+      firebase:
+        config: "flavors/nxtmobility/google-services.json"
+    ios:
+      bundleId: "com.nxtmobility.ios"
+      firebase:
+        config: "flavors/nxtmobility/GoogleService-Info.plist"
+
+  mycomoly:
+    app:
+      name: "myCoMoly"
+      icon: "flavors/mycomoly/icon_1024.png"
+
+    android:
+      applicationId: "com.comolygmbh.android"
+      firebase:
+        config: "flavors/mycomoly/google-services.json"
+    ios:
+      bundleId: "com.comolygmbh.ios"
+      firebase:
+        config: "flavors/mycomoly/GoogleService-Info.plist"
+
+  maesev:
+    app:
+      name: "MAES EV"
+      icon: "flavors/maesev/icon_1024.png"
+
+    android:
+      applicationId: "com.maesev.android"
+      firebase:
+        config: "flavors/maesev/google-services.json"
+    ios:
+      bundleId: "com.maesev.ios"
+      firebase:
+        config: "flavors/maesev/GoogleService-Info.plist"
+
+  kiachargenl:
+    app:
+      name: "Kia Charge NL"
+      icon: "flavors/kiachargenl/icon_1024.png"
+
+    android:
+      applicationId: "com.kia.kiachargenl"
+      firebase:
+        config: "flavors/kiachargenl/google-services.json"
+    ios:
+      bundleId: "com.kia.kiachargenl"
+      firebase:
+        config: "flavors/kiachargenl/GoogleService-Info.plist"
+
+  abt:
+    app:
+      name: "ABT Test"
+      icon: "flavors/abt/icon_1024.png"
+
+    android:
+      applicationId: "com.andro.abt"
+      firebase:
+        config: "flavors/abt/google-services.json"
+    ios:
+      bundleId: "com.andro.abt"
+      firebase:
+        config: "flavors/abt/GoogleService-Info.plist"
+
+
+ide: vscode
