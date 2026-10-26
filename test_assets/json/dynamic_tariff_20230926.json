@@ -1,0 +1,411 @@
+{
+    "currency": "EUR",
+    "elements": [
+      {
+        "priceComponents": [
+          {
+            "price": 0.54,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "01:00",
+          "startDate": "2023-09-26",
+          "startTime": "00:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.54,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "02:00",
+          "startDate": "2023-09-26",
+          "startTime": "01:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.53,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "03:00",
+          "startDate": "2023-09-26",
+          "startTime": "02:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.53,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "04:00",
+          "startDate": "2023-09-26",
+          "startTime": "03:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.54,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "05:00",
+          "startDate": "2023-09-26",
+          "startTime": "04:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.54,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "06:00",
+          "startDate": "2023-09-26",
+          "startTime": "05:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.58,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "07:00",
+          "startDate": "2023-09-26",
+          "startTime": "06:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.68,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "08:00",
+          "startDate": "2023-09-26",
+          "startTime": "07:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.59,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "09:00",
+          "startDate": "2023-09-26",
+          "startTime": "08:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.55,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "10:00",
+          "startDate": "2023-09-26",
+          "startTime": "09:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.53,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "11:00",
+          "startDate": "2023-09-26",
+          "startTime": "10:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.53,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "12:00",
+          "startDate": "2023-09-26",
+          "startTime": "11:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.52,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "13:00",
+          "startDate": "2023-09-26",
+          "startTime": "12:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.51,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "14:00",
+          "startDate": "2023-09-26",
+          "startTime": "13:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.52,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "15:00",
+          "startDate": "2023-09-26",
+          "startTime": "14:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.53,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "16:00",
+          "startDate": "2023-09-26",
+          "startTime": "15:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.53,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "17:00",
+          "startDate": "2023-09-26",
+          "startTime": "16:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.56,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "18:00",
+          "startDate": "2023-09-26",
+          "startTime": "17:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.6,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "19:00",
+          "startDate": "2023-09-26",
+          "startTime": "18:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.66,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "20:00",
+          "startDate": "2023-09-26",
+          "startTime": "19:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.59,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "21:00",
+          "startDate": "2023-09-26",
+          "startTime": "20:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.56,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "22:00",
+          "startDate": "2023-09-26",
+          "startTime": "21:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.54,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "23:00",
+          "startDate": "2023-09-26",
+          "startTime": "22:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 0.53,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "endDate": "2023-09-27",
+          "endTime": "00:00",
+          "startDate": "2023-09-26",
+          "startTime": "23:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "price": 1.1,
+            "stepSize": 1,
+            "type": "FLAT",
+            "vat": 21
+          },
+          {
+            "price": 0.3,
+            "stepSize": 1,
+            "type": "TIME",
+            "vat": 21
+          },
+          {
+            "price": 0.73,
+            "stepSize": 1,
+            "type": "ENERGY",
+            "vat": 21
+          }
+        ]
+      }
+    ]
+  }

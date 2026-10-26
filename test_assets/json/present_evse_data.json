@@ -1,0 +1,188 @@
+{
+"data": [
+    {
+      "accessPolicy": "businessReimburse",
+      "address": "Prinsengracht 847",
+      "associatedAccounts": {
+        "readAccess": [],
+        "writeAccess": []
+      },
+      "city": "Amsterdam",
+      "connectorTypes": [
+        "IEC_62196_T2",
+        "IEC_62196_T2"
+      ],
+      "coordinates": {
+        "latitude": "52.362710",
+        "longitude": "4.889560"
+      },
+      "country": "NLD",
+      "createdAt": "2023-04-14T09:34:47.196Z",
+      "creditBillingTarget": [],
+      "evseIds": [
+        "NL*GFX*EEVB*P1629150*1",
+        "NL*GFX*EEVB*P1629150*2"
+      ],
+      "evses": [
+        {
+          "capabilities": [
+            "REMOTE_START_STOP_CAPABLE",
+            "RFID_READER"
+          ],
+          "connectors": [
+            {
+              "amperage": 16,
+              "format": "SOCKET",
+              "id": "1",
+              "last_updated": "2023-04-01T10:14:28Z",
+              "maxPower": 11.04,
+              "max_electric_power": 11000,
+              "power_type": "AC_3_PHASE",
+              "standard": "IEC_62196_T2",
+              "tariff": {
+                "createdAt": "2022-02-01T13:54:03.188Z",
+                "currency": "EUR",
+                "elements": [
+                  {
+                    "price_components": [
+                      {
+                        "price": 0.28,
+                        "step_size": 1,
+                        "type": "ENERGY"
+                      }
+                    ],
+                    "restrictions": {
+                      "start_date": "2021-12-22"
+                    }
+                  }
+                ],
+                "last_updated": "2021-12-22T18:00:23.000Z",
+                "ocpiCredentialsId": "5f57908e00958315eb4a89b3",
+                "ocpiCredentialsName": "Greenflux",
+                "ocpiCredentialsVersionUrl": "https://ocpi.greenflux.com/api/ocpi/cpo/versions",
+                "ocpiExternalId": "EU20",
+                "providerContext": "msp",
+                "providerId": "5e833daeadadc4003fdf7fb2",
+                "source": "ocpi",
+                "updatedAt": "2023-06-10T08:26:34.115Z"
+              },
+              "tariff_id": "EU20",
+              "voltage": 230
+            }
+          ],
+          "directions": [],
+          "evse_id": "NL*GFX*EEVB*P1629150*1",
+          "last_updated": "2023-06-19T20:23:41Z",
+          "maxPower": 11.04,
+          "normalizedEvseId": "NLGFXEEVBP16291501",
+          "parking_restrictions": [],
+          "status": "AVAILABLE",
+          "status_schedule": [],
+          "uid": "NL-GFX-EEVB-P1629150-1"
+        },
+        {
+          "capabilities": [
+            "REMOTE_START_STOP_CAPABLE",
+            "RFID_READER"
+          ],
+          "connectors": [
+            {
+              "amperage": 16,
+              "format": "SOCKET",
+              "id": "2",
+              "last_updated": "2023-04-01T10:14:28Z",
+              "maxPower": 11.04,
+              "max_electric_power": 11000,
+              "power_type": "AC_3_PHASE",
+              "standard": "IEC_62196_T2",
+              "tariff": {
+                "createdAt": "2022-02-01T13:54:03.188Z",
+                "currency": "EUR",
+                "elements": [
+                  {
+                    "price_components": [
+                      {
+                        "price": 0.28,
+                        "step_size": 1,
+                        "type": "ENERGY"
+                      }
+                    ],
+                    "restrictions": {
+                      "start_date": "2021-12-22"
+                    }
+                  }
+                ],
+                "last_updated": "2021-12-22T18:00:23.000Z",
+                "ocpiCredentialsId": "5f57908e00958315eb4a89b3",
+                "ocpiCredentialsName": "Greenflux",
+                "ocpiCredentialsVersionUrl": "https://ocpi.greenflux.com/api/ocpi/cpo/versions",
+                "ocpiExternalId": "EU20",
+                "providerContext": "msp",
+                "providerId": "5e833daeadadc4003fdf7fb2",
+                "source": "ocpi",
+                "updatedAt": "2023-06-10T08:26:34.115Z"
+              },
+              "tariff_id": "EU20",
+              "voltage": 230
+            }
+          ],
+          "directions": [],
+          "evse_id": "NL*GFX*EEVB*P1629150*2",
+          "last_updated": "2023-06-21T13:58:00Z",
+          "maxPower": 11.04,
+          "normalizedEvseId": "NLGFXEEVBP16291502",
+          "parking_restrictions": [],
+          "status": "CHARGING",
+          "status_schedule": [],
+          "uid": "NL-GFX-EEVB-P1629150-2"
+        }
+      ],
+      "facilities": [],
+      "geoLocation": {
+        "coordinates": [
+          4.88956,
+          52.36271
+        ],
+        "type": "Point"
+      },
+      "hasTariffInfo": true,
+      "id": "64391e37fe39930012b3988a",
+      "infraProviderId": "NLGFX",
+      "last_updated": "2023-06-21T13:58:00.000Z",
+      "maxPower": 11.04,
+      "name": "A0577",
+      "numericIdentity": 12593455,
+      "ocpiCredentialsId": "5f57908e00958315eb4a89b3",
+      "ocpiCredentialsName": "Greenflux",
+      "ocpiCredentialsVersionUrl": "https://ocpi.greenflux.com/api/ocpi/cpo/versions",
+      "ocpiExternalId": "38C407B8-3C54-408B-A35E-70C3F7A08E5D",
+      "opening_times": {
+        "twentyfourseven": true
+      },
+      "postal_code": "1017KB",
+      "powerType": "ac",
+      "providerContext": "msp",
+      "providerId": "5e833daeadadc4003fdf7fb2",
+      "source": "ocpi",
+      "status": "AVAILABLE",
+      "suboperator": {
+        "logo": {
+          "category": "OPERATOR",
+          "thumbnail": "https://www.equans.com/sites/g/files/tkmtob111/files/2021-11/logo.JPG",
+          "type": "JPG",
+          "url": "https://www.equans.com/sites/g/files/tkmtob111/files/2021-11/logo.JPG"
+        },
+        "name": "Equans Amsterdam",
+        "phone_number": "+310884446622",
+        "website": "https://equans.nl/markten/duurzame-energie-netten/e-mobility/"
+      },
+      "type": "ON_STREET",
+      "updatedAt": "2023-06-22T18:04:45.956Z"
+    }
+  ],
+  "meta": {
+    "limit": 200,
+    "skip": 0,
+    "total": 1
+  }
+}

@@ -1,0 +1,145 @@
+{
+  
+                "currency": "EUR",
+                "elements": [
+                  {
+                    "priceComponents": [
+                      {
+                        "price": 2.4,
+                        "stepSize": 1,
+                        "type": "FLAT",
+                        "vat": 21
+                      },
+                      {
+                        "price": 1,
+                        "stepSize": 1,
+                        "type": "TIME",
+                        "vat": 21
+                      },
+                      {
+                        "price": 1.03,
+                        "stepSize": 1,
+                        "type": "ENERGY",
+                        "vat": 21
+                      }
+                    ],
+                    "restrictions": {
+                      "dayOfWeek": [
+                        "SUNDAY"
+                      ]
+                    }
+                  },
+                  {
+                    "priceComponents": [
+                      {
+                        "price": 0.4,
+                        "stepSize": 1,
+                        "type": "FLAT",
+                        "vat": 21
+                      },
+                      {
+                        "price": 0.4,
+                        "stepSize": 1,
+                        "type": "TIME",
+                        "vat": 21
+                      },
+                      {
+                        "price": 1.03,
+                        "stepSize": 1,
+                        "type": "ENERGY",
+                        "vat": 21
+                      }
+                    ],
+                    "restrictions": {
+                      "dayOfWeek": [
+                        "MONDAY",
+                        "TUESDAY"
+                      ]
+                    }
+                  },
+                  {
+                    "priceComponents": [
+                      {
+                        "price": 0,
+                        "stepSize": 1,
+                        "type": "PARKING_TIME",
+                        "vat": 21
+                      }
+                    ],
+                    "restrictions": {
+                      "dayOfWeek": [
+                        "MONDAY",
+                        "TUESDAY"
+                      ],
+                      "maxDuration": 1800,
+                      "minDuration": 0
+                    }
+                  },
+                  {
+                    "priceComponents": [
+                      {
+                        "price": 4.002,
+                        "stepSize": 1,
+                        "type": "PARKING_TIME",
+                        "vat": 21
+                      }
+                    ],
+                    "restrictions": {
+                      "dayOfWeek": [
+                        "MONDAY",
+                        "TUESDAY"
+                      ],
+                      "minDuration": 1800
+                    }
+                  },
+                  {
+                    "priceComponents": [
+                      {
+                        "price": 0.4,
+                        "stepSize": 1,
+                        "type": "FLAT",
+                        "vat": 21
+                      },
+                      {
+                        "price": 0.4,
+                        "stepSize": 1,
+                        "type": "TIME",
+                        "vat": 21
+                      },
+                      {
+                        "price": 0.43,
+                        "stepSize": 1,
+                        "type": "ENERGY",
+                        "vat": 21
+                      }
+                    ],
+                    "restrictions": {
+                      "endTime": "22:00",
+                      "startTime": "09:00"
+                    }
+                  },
+                  {
+                    "priceComponents": [
+                      {
+                        "price": 0.1,
+                        "stepSize": 1,
+                        "type": "FLAT",
+                        "vat": 21
+                      },
+                      {
+                        "price": 0.3,
+                        "stepSize": 1,
+                        "type": "TIME",
+                        "vat": 21
+                      },
+                      {
+                        "price": 0.23,
+                        "stepSize": 1,
+                        "type": "ENERGY",
+                        "vat": 21
+                      }
+                    ]
+                  }
+                ]
+
+}

@@ -1,0 +1,41 @@
+{
+    "currency": "EUR",
+    "elements": [
+      {
+        "priceComponents": [
+          {
+            "type": "TIME",
+            "price": 0.3,
+            "stepSize": 1,
+            "vat": 21
+          },
+          {
+            "type": "PARKING_TIME",
+            "price": 0.3,
+            "stepSize": 1,
+            "vat": 21
+          },
+          {
+            "type": "ENERGY",
+            "price": 0.4,
+            "stepSize": 1,
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "startTime": "08:00",
+          "endTime": "22:00"
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "type": "ENERGY",
+            "price": 0.4,
+            "stepSize": 1,
+            "vat": 21
+          }
+        ]
+      }
+    ]
+  }

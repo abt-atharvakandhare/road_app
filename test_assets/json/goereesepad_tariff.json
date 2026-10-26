@@ -1,0 +1,21 @@
+{
+  "currency": "EUR",
+  "elements": [
+    {
+      "priceComponents": [
+        {
+          "price": 0.281,
+          "stepSize": 1,
+          "type": "ENERGY",
+          "vat": 21
+        }
+      ],
+      "restrictions": {
+        "endDate": "9999-12-31",
+        "endTime": "23:59",
+        "startDate": "2023-01-21",
+        "startTime": "00:00"
+      }
+    }
+  ]
+}
