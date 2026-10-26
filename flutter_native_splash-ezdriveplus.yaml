@@ -1,0 +1,7 @@
+flutter_native_splash:
+  background_image: "flavors/ezdriveplus/splash_screen_background.png"
+  image: flavors/ezdriveplus/splash_screen_logo.png
+  android_12:
+    image: flavors/ezdriveplus/android_splash_screen_logo.png
+    color: "#FFFFFF"
+    icon_background_color: "#FFFFFF"

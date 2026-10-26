@@ -1,0 +1,7 @@
+flutter_native_splash:
+  background_image: "flavors/nxt50five/splash_screen_background.png"
+  image: flavors/nxt50five/splash_screen_logo.png
+  android_12:
+    image: flavors/nxt50five/android_splash_screen_logo.png
+    color: "#002856"
+    icon_background_color: "#002856"
