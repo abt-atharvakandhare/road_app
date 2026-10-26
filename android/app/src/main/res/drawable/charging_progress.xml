@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ProgressBar drawable: track + gradient-filled progress. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@android:id/background"
+        android:drawable="@drawable/charging_progress_track" />
+    <item android:id="@android:id/progress">
+        <clip android:drawable="@drawable/charging_progress_fill" />
+    </item>
+</layer-list>

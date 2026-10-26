@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362257229847",
+    "project_id": "opcharge-ev",
+    "storage_bucket": "opcharge-ev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362257229847:android:55e5c56717e9e956521452",
+        "android_client_info": {
+          "package_name": "com.opcharge.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhPQFT9CrSJju0c9GF4Rf3o1L2xnlUZ3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

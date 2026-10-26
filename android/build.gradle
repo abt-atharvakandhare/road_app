@@ -1,0 +1,35 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.fpregistry.io/releases' }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    // ToDo: Remove this when biometric_storage 5.0.1 is updated to compile against 33+
+    //
+    // biometric_storage 5.0.1 pins compileSdk 31, but its androidx transitive
+    // dependencies (tracing, exifinterface, arch.core, window) require compiling
+    // against 33/34, so its checkReleaseAarMetadata task fails. Force it up to
+    // the app's compileSdk. Registered before evaluationDependsOn below so the
+    // project isn't already evaluated. Remove when the plugin ships a release
+    // compiled against 33+.
+    afterEvaluate { project ->
+        if (project.name == "biometric_storage") {
+            project.android {
+                compileSdkVersion 36
+            }
+        }
+    }
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

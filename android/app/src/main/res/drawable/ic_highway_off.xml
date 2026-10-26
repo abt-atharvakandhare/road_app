@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Highway/road lanes icon with slash - off state -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M11,5V11H8L12,16L16,11H13V5H11Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M4,3V21H6V3H4Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M18,3V21H20V3H18Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M11,17V21H13V17H11Z"/>
+    <!-- Diagonal slash -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M3.27,3L2,4.27L19.73,22L21,20.73L3.27,3Z"/>
+</vector>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "610287905076",
+    "project_id": "ezdrive-plus",
+    "storage_bucket": "ezdrive-plus.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610287905076:android:b5698f671bd6d4bb495d61",
+        "android_client_info": {
+          "package_name": "fr.ezdrive.plus.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFbqbqUHYcSzkomVNUnOWpZtP7Q910iyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

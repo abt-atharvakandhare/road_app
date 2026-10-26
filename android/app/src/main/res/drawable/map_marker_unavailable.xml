@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="44dp"
+    android:height="44dp"
+    android:viewportWidth="44"
+    android:viewportHeight="44">
+    <!-- Pin centered in 44x44 viewport (original 22x28, offset by 11,8) -->
+    <group
+        android:translateX="11"
+        android:translateY="8">
+        <!-- Main pin shape - red -->
+        <path
+            android:pathData="M11,1C16.523,1 21,5.477 21,11C21,14.286 19.415,17.2 16.968,19.023C15.083,20.439 12.387,22.685 11.771,26.319C11.707,26.701 11.387,26.997 11,26.997C10.613,26.997 10.293,26.701 10.229,26.319C9.613,22.685 6.916,20.439 5.031,19.023C2.585,17.2 1,14.286 1,11C1,5.477 5.477,1 11,1Z"
+            android:fillColor="#EB001B"/>
+        <!-- Center dot - black with 40% opacity -->
+        <path
+            android:pathData="M11,15C13.209,15 15,13.209 15,11C15,8.791 13.209,7 11,7C8.791,7 7,8.791 7,11C7,13.209 8.791,15 11,15Z"
+            android:fillColor="#66000000"/>
+    </group>
+</vector>
