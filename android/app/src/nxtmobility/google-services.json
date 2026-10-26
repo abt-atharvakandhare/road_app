@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "985641511122",
+    "project_id": "nxt-charge",
+    "storage_bucket": "nxt-charge.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985641511122:android:2baa4ae4981517df69e50b",
+        "android_client_info": {
+          "package_name": "com.nxtmobility.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFnUyQdgOFoRZye3Jvq5eDI4ooipttPPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

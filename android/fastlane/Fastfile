@@ -1,0 +1,1083 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+version_number = flutter_version(pubspec_location: "../pubspec.yaml")["version_name"]
+build_number = flutter_version(pubspec_location: "../pubspec.yaml")["version_code"]
+commits_count_white_label = prompt(text: "How many git history entries to include for white label: ")
+commits_count_eflux = prompt(text: "How many git history entries to include for E-Flux: ")
+
+# Flutter project root, resolved relative to this Fastfile (android/fastlane/Fastfile).
+flutter_project_root = File.expand_path("../..", __dir__)
+
+road_internal_testers = "r@ymon.do, hemrikaleon@gmail.com, berend@road.io, g.grasarevic@gmail.com, kaare@road.io, mikey@road.io, peter@yukaii.com, harmen.nauta@road.io, peter.cuhalev@road.io, denzil.naggan@road.io, rustem@road.io, denys.parchenko@road.io, amir.soleimaniniaki@road.io, ivan.morardo@road.io, vincent@road.io"
+
+# Gradle's assemble/bundle tasks compile the Dart AOT but do not regenerate
+# GeneratedPluginRegistrant.java or run pub get, so a stale registrant (e.g. left
+# behind by a patrol test run) survives into the release artifact. `flutter clean`
+# also wipes build/ and .dart_tool/, so Gradle's native-lib merge/strip caches
+# cannot reuse a stale libapp.so from a previous build of another branch. Running
+# this before the Gradle step guarantees the packaged build is compiled fresh from
+# the current source. The Gradle step still owns the signed output that is uploaded.
+def flutter_build_app(project_root:, flavor:, output:, version_name:, version_code:)
+  sh("cd #{project_root} && flutter clean && flutter build #{output} --flavor #{flavor} --release --build-name=#{version_name} --build-number=#{version_code}")
+end
+
+# Maps known failure signatures to the next step that actually fixes them,
+# shown alongside the raw error in the end-of-run summary.
+def failure_hint(error)
+  case error
+  when /firebase|invalid_grant|refresh token/i
+    "Firebase CLI auth problem — run `firebase login --reauth` and re-run the lane."
+  when /The caller does not have permission|androidpublisher|Google Api Error/i
+    "Play Console API rejected the upload — check the service account / API access permissions for this app."
+  when /keystore|signing/i
+    "Signing failed — check the keystore path and credentials in this app's lane."
+  when /Exit status of command|Gradle build failed/i
+    "The build itself failed — scroll up to this app's flutter/gradle output for the real error."
+  end
+end
+
+# Runs each app's release lane in turn, catching failures so one broken app
+# does not stop the remaining apps. Prints a per-app status summary at the
+# end and only then fails the lane if any app failed.
+def run_lanes_with_summary(lanes)
+  results = {}
+  lanes.each do |name, release_lane|
+    begin
+      release_lane.call
+      results[name] = nil
+    rescue => e
+      UI.error("#{name} failed: #{e.message}")
+      results[name] = e.message.to_s.gsub(/\s+/, " ").strip[0, 400]
+    end
+  end
+
+  UI.header("Release status")
+  results.each do |name, error|
+    if error
+      UI.error("❌ #{name} — #{error}")
+      hint = failure_hint(error)
+      UI.important("   ↳ Next step: #{hint}") if hint
+    else
+      UI.success("✅ #{name}")
+    end
+  end
+
+  failed = results.select { |_, error| error }.keys
+  UI.user_error!("Failed releases: #{failed.join(', ')}") unless failed.empty?
+end
+
+# Shared roster for the aggregate Firebase lanes below.
+def white_label_firebase_lanes
+  {
+    "Friwigo" => -> { releaseFirebaseFriwigo },
+    "EZdrive V-CiTY" => -> { releaseFirebaseEzdrive },
+    "EZDrive+" => -> { releaseFirebaseEzdrivePlus },
+    "NXT 50five" => -> { releaseFirebasenxt50five },
+    "V-City Réunion" => -> { releaseFirebaseVcityReunion },
+    "NXT Charge" => -> { releaseFirebaseNxtMobility },
+    "myCoMoly" => -> { releaseFirebaseMyComoly },
+    "MAES EV" => -> { releaseFirebaseMaesEv },
+    "Kia Charge NL" => -> { releaseFirebaseKiaChargeNl },
+  }
+end
+
+# Shared roster for the aggregate Google Play lane below.
+def white_label_google_play_lanes
+  {
+    "Friwigo" => -> { releaseGooglePlayFriwigo },
+    "EZdrive V-CiTY" => -> { releaseGooglePlayEzdriveVcity },
+    "EZDrive+" => -> { releaseGooglePlayEzdrivePlus },
+    "NXT 50five" => -> { releaseGooglePlayNxt50five },
+    "V-City Réunion" => -> { releaseGooglePlayVcityReunion },
+    "NXT Charge" => -> { releaseGooglePlayNxtMobility },
+    "myCoMoly" => -> { releaseGooglePlayMyComoly },
+    "MAES EV" => -> { releaseGooglePlayMaesEv },
+    "Kia Charge NL" => -> { releaseGooglePlayKiaChargeNl },
+  }
+end
+
+# Shared roster for the aggregate Google Play internal testing track lane below.
+def white_label_google_play_internal_lanes
+  {
+    "Friwigo" => -> { releaseGooglePlayInternalFriwigo },
+    "EZdrive V-CiTY" => -> { releaseGooglePlayInternalEzdriveVcity },
+    "EZDrive+" => -> { releaseGooglePlayInternalEzdrivePlus },
+    "NXT 50five" => -> { releaseGooglePlayInternalNxt50five },
+    "V-City Réunion" => -> { releaseGooglePlayInternalVcityReunion },
+    "NXT Charge" => -> { releaseGooglePlayInternalNxtMobility },
+    "myCoMoly" => -> { releaseGooglePlayInternalMyComoly },
+    "MAES EV" => -> { releaseGooglePlayInternalMaesEv },
+    "Kia Charge NL" => -> { releaseGooglePlayInternalKiaChargeNl },
+  }
+end
+
+platform :android do
+
+  desc "E-Flux - Deploy a new version to the Google Play"
+  lane :releaseGooglePlayEFlux do
+    puts "E-Flux Releasing to Google Play Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "eflux", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",
+    flavor: "eflux",
+    build_type: "Release",
+    print_command: true,
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/eflux-ev-keystore.jks",
+      "android.injected.signing.store.password" => "948b7e5ddb7444d0b404f96e0103cad4",
+      "android.injected.signing.key.alias" => "QGthYXJlYWwvRS1GbHV4LUVW",
+      "android.injected.signing.key.password" => "bc26406f2dd5401885d4044a532a1b6a",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      apk: "../build/app/outputs/apk/eflux/release/app-eflux-release.apk",
+      changes_not_sent_for_review: true,
+      rollout: "1"
+    )
+  end
+
+  desc "E-Flux - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalEFlux do
+    puts "E-Flux Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "eflux", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",
+    flavor: "eflux",
+    build_type: "Release",
+    print_command: true,
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/eflux-ev-keystore.jks",
+      "android.injected.signing.store.password" => "948b7e5ddb7444d0b404f96e0103cad4",
+      "android.injected.signing.key.alias" => "QGthYXJlYWwvRS1GbHV4LUVW",
+      "android.injected.signing.key.password" => "bc26406f2dd5401885d4044a532a1b6a",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      apk: "../build/app/outputs/apk/eflux/release/app-eflux-release.apk",
+      changes_not_sent_for_review: true
+    )
+  end
+
+  desc "E-Flux - Submit a new build to Firebase"
+  lane :releaseFirebaseEFlux do |options|
+    puts "E-Flux Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "eflux", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",
+    flavor: "eflux",
+    build_type: "Release",
+    print_command: true,
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/eflux-ev-keystore.jks",
+      "android.injected.signing.store.password" => "948b7e5ddb7444d0b404f96e0103cad4",
+      "android.injected.signing.key.alias" => "QGthYXJlYWwvRS1GbHV4LUVW",
+      "android.injected.signing.key.password" => "bc26406f2dd5401885d4044a532a1b6a",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:300167369900:android:52add3639effa8cf693b09",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_eflux),
+      apk_path: "../build/app/outputs/apk/eflux/release/app-eflux-release.apk"
+    )
+  end
+
+  desc "Friwigo - Submit a new build to Firebase"
+  lane :releaseFirebaseFriwigo do |options|
+    puts "Friwigo Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "friwigo", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",  # bundle or assemble for aab or apk
+    flavor: "friwigo",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/friwigo-ev.keystore",
+      "android.injected.signing.store.password" => "friwigoX587KLS0pqW",
+      "android.injected.signing.key.alias" => "friwigoKeyAlias",
+      "android.injected.signing.key.password" => "friwigoX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:478063358251:android:ecd29843e6eb3f246cd56e",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      apk_path: "../build/app/outputs/apk/friwigo/release/app-friwigo-release.apk"
+    )
+  end
+
+  desc "Friwigo - Deploy a new version to the Google Play"
+  lane :releaseGooglePlayFriwigo do
+    ENV["PACKAGE_NAME"] = "com.friwigo.android"
+
+    puts "Friwigo Releasing to Google Play Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "friwigo", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",  # bundle or assemble for aab or apk
+    flavor: "friwigo",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/friwigo-ev.keystore",
+      "android.injected.signing.store.password" => "friwigoX587KLS0pqW",
+      "android.injected.signing.key.alias" => "friwigoKeyAlias",
+      "android.injected.signing.key.password" => "friwigoX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      aab: "../build/app/outputs/bundle/friwigoRelease/app-friwigo-release.aab",
+      changes_not_sent_for_review: true,
+      rollout: "1"
+    )
+  end
+
+  desc "Friwigo - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalFriwigo do
+    ENV["PACKAGE_NAME"] = "com.friwigo.android"
+
+    puts "Friwigo Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "friwigo", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "friwigo",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/friwigo-ev.keystore",
+      "android.injected.signing.store.password" => "friwigoX587KLS0pqW",
+      "android.injected.signing.key.alias" => "friwigoKeyAlias",
+      "android.injected.signing.key.password" => "friwigoX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      aab: "../build/app/outputs/bundle/friwigoRelease/app-friwigo-release.aab",
+      changes_not_sent_for_review: true
+    )
+  end
+
+  desc "EZdrive V-CiTY - Submit a new build to Firebase"
+  lane :releaseFirebaseEzdrive do |options|
+    puts "EZdrive V-CiTY Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "ezdrive", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",  # bundle or assemble for aab or apk
+    flavor: "ezdrive",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/ezdrive-ev.keystore",
+      "android.injected.signing.store.password" => "ezdriveX587KLS0pqW",
+      "android.injected.signing.key.alias" => "ezdriveKeyAlias",
+      "android.injected.signing.key.password" => "ezdriveX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:1092046543349:android:049f29459c0c63af1e28bc",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      apk_path: "../build/app/outputs/apk/ezdrive/release/app-ezdrive-release.apk"
+    )
+  end
+
+  desc "EZdrive V-CiTY - Deploy a new version to the Google Play"
+  lane :releaseGooglePlayEzdriveVcity do
+    puts "EZdrive V-CiTY Releasing to Google Play Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "ezdrive", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "ezdrive",
+    build_type: "Release",
+    print_command: true,
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/ezdrive-ev.keystore",
+      "android.injected.signing.store.password" => "ezdriveX587KLS0pqW",
+      "android.injected.signing.key.alias" => "ezdriveKeyAlias",
+      "android.injected.signing.key.password" => "ezdriveX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      package_name: "fr.ezdrive.android",
+      aab: "../build/app/outputs/bundle/ezdriveRelease/app-ezdrive-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true,
+      rollout: "1"
+    )
+  end
+
+  desc "EZdrive V-CiTY - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalEzdriveVcity do
+    puts "EZdrive V-CiTY Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "ezdrive", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "ezdrive",
+    build_type: "Release",
+    print_command: true,
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/ezdrive-ev.keystore",
+      "android.injected.signing.store.password" => "ezdriveX587KLS0pqW",
+      "android.injected.signing.key.alias" => "ezdriveKeyAlias",
+      "android.injected.signing.key.password" => "ezdriveX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      package_name: "fr.ezdrive.android",
+      aab: "../build/app/outputs/bundle/ezdriveRelease/app-ezdrive-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true
+    )
+  end
+
+  desc "EZDrive+ - Submit a new build to Firebase"
+  lane :releaseFirebaseEzdrivePlus do |options|
+    puts "EZDrive+ Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "ezdriveplus", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",  # bundle or assemble for aab or apk
+    flavor: "ezdriveplus",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/ezdriveplus.keystore",
+      "android.injected.signing.store.password" => "ezdriveplusX587KLS0pqW",
+      "android.injected.signing.key.alias" => "ezdriveplusKeyAlias",
+      "android.injected.signing.key.password" => "ezdriveplusX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:610287905076:android:b5698f671bd6d4bb495d61",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      apk_path: "../build/app/outputs/apk/ezdriveplus/release/app-ezdriveplus-release.apk"
+    )
+  end
+
+  desc "EZDrive+ - Deploy a new version to the Google Play"
+  lane :releaseGooglePlayEzdrivePlus do
+    puts "EZDrive+ Releasing to Google Play Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "ezdriveplus", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "ezdriveplus",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/ezdriveplus.keystore",
+      "android.injected.signing.store.password" => "ezdriveplusX587KLS0pqW",
+      "android.injected.signing.key.alias" => "ezdriveplusKeyAlias",
+      "android.injected.signing.key.password" => "ezdriveplusX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      package_name: "fr.ezdrive.plus.android",
+      aab: "../build/app/outputs/bundle/ezdriveplusRelease/app-ezdriveplus-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true,
+      rollout: "1"
+    )
+  end
+
+  desc "EZDrive+ - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalEzdrivePlus do
+    puts "EZDrive+ Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "ezdriveplus", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "ezdriveplus",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/ezdriveplus.keystore",
+      "android.injected.signing.store.password" => "ezdriveplusX587KLS0pqW",
+      "android.injected.signing.key.alias" => "ezdriveplusKeyAlias",
+      "android.injected.signing.key.password" => "ezdriveplusX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      package_name: "fr.ezdrive.plus.android",
+      aab: "../build/app/outputs/bundle/ezdriveplusRelease/app-ezdriveplus-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true
+    )
+  end
+
+  desc "NXT 50five - Submit a new build to Firebase"
+  lane :releaseFirebasenxt50five do |options|
+    puts "NXT 50five Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "nxt50five", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",  # bundle or assemble for aab or apk
+    flavor: "nxt50five",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/nxt50five-ev.keystore",
+      "android.injected.signing.store.password" => "nxt50fiveX587KLS0pqW",
+      "android.injected.signing.key.alias" => "nxt50fiveKeyAlias",
+      "android.injected.signing.key.password" => "nxt50fiveX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:848011980961:android:bb78066f3e0c8684b2c0e0",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      apk_path: "../build/app/outputs/apk/nxt50five/release/app-nxt50five-release.apk"
+    )
+  end
+
+  desc "NXT 50five - Submit a new build to Google Play"
+  lane :releaseGooglePlayNxt50five do |options|
+    puts "NXT 50five Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "nxt50five", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",  # bundle or assemble for aab or apk
+    flavor: "nxt50five",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/nxt50five-ev.keystore",
+      "android.injected.signing.store.password" => "nxt50fiveX587KLS0pqW",
+      "android.injected.signing.key.alias" => "nxt50fiveKeyAlias",
+      "android.injected.signing.key.password" => "nxt50fiveX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      package_name: "nl.nxt50five.android",
+      aab: "../build/app/outputs/bundle/nxt50fiveRelease/app-nxt50five-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true,
+      rollout: "1"
+    )
+  end
+
+  desc "NXT 50five - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalNxt50five do |options|
+    puts "NXT 50five Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "nxt50five", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "nxt50five",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/nxt50five-ev.keystore",
+      "android.injected.signing.store.password" => "nxt50fiveX587KLS0pqW",
+      "android.injected.signing.key.alias" => "nxt50fiveKeyAlias",
+      "android.injected.signing.key.password" => "nxt50fiveX587KLS0pqW",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      package_name: "nl.nxt50five.android",
+      aab: "../build/app/outputs/bundle/nxt50fiveRelease/app-nxt50five-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true
+    )
+  end
+
+  # Lanes for the brands taken over from the ABT partner fork.
+
+  desc "V-City Réunion - Submit a new build to Firebase"
+  lane :releaseFirebaseVcityReunion do |options|
+    puts "V-City Réunion Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "vcityreunion", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",
+    flavor: "vcityreunion",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/vcityreunion.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "vcityreunion",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:39572061140:android:7feab3bf95292e042d7441",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      apk_path: "../build/app/outputs/apk/vcityreunion/release/app-vcityreunion-release.apk"
+    )
+  end
+
+  desc "V-City Réunion - Deploy a new version to the Google Play"
+  lane :releaseGooglePlayVcityReunion do
+    puts "V-City Réunion Releasing to Google Play Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "vcityreunion", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "vcityreunion",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/vcityreunion.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "vcityreunion",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      package_name: "com.vcityreunion.android",
+      aab: "../build/app/outputs/bundle/vcityreunionRelease/app-vcityreunion-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true,
+      rollout: "1"
+    )
+  end
+
+  desc "V-City Réunion - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalVcityReunion do
+    puts "V-City Réunion Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "vcityreunion", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "vcityreunion",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/vcityreunion.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "vcityreunion",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      package_name: "com.vcityreunion.android",
+      aab: "../build/app/outputs/bundle/vcityreunionRelease/app-vcityreunion-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true
+    )
+  end
+
+  desc "NXT Charge - Submit a new build to Firebase"
+  lane :releaseFirebaseNxtMobility do |options|
+    puts "NXT Charge Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "nxtmobility", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",
+    flavor: "nxtmobility",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/nxtcharge-release.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "nxtchargeKeyAlias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:985641511122:android:2baa4ae4981517df69e50b",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      apk_path: "../build/app/outputs/apk/nxtmobility/release/app-nxtmobility-release.apk"
+    )
+  end
+
+  desc "NXT Charge - Deploy a new version to the Google Play"
+  lane :releaseGooglePlayNxtMobility do
+    puts "NXT Charge Releasing to Google Play Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "nxtmobility", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "nxtmobility",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/nxtcharge-release.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "nxtchargeKeyAlias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      package_name: "com.nxtmobility.android",
+      aab: "../build/app/outputs/bundle/nxtmobilityRelease/app-nxtmobility-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true,
+      rollout: "1"
+    )
+  end
+
+  desc "NXT Charge - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalNxtMobility do
+    puts "NXT Charge Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "nxtmobility", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "nxtmobility",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/nxtcharge-release.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "nxtchargeKeyAlias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      package_name: "com.nxtmobility.android",
+      aab: "../build/app/outputs/bundle/nxtmobilityRelease/app-nxtmobility-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true
+    )
+  end
+
+  desc "myCoMoly - Submit a new build to Firebase"
+  lane :releaseFirebaseMyComoly do |options|
+    puts "myCoMoly Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "mycomoly", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",
+    flavor: "mycomoly",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/comoly-release-key.jks",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "mycomolykeyalias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:911711207599:android:9a478ed22445818cfc945a",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      apk_path: "../build/app/outputs/apk/mycomoly/release/app-mycomoly-release.apk"
+    )
+  end
+
+  desc "myCoMoly - Deploy a new version to the Google Play"
+  lane :releaseGooglePlayMyComoly do
+    puts "myCoMoly Releasing to Google Play Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "mycomoly", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "mycomoly",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/comoly-release-key.jks",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "mycomolykeyalias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      package_name: "com.comolygmbh.android",
+      aab: "../build/app/outputs/bundle/mycomolyRelease/app-mycomoly-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true,
+      rollout: "1"
+    )
+  end
+
+  desc "myCoMoly - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalMyComoly do
+    puts "myCoMoly Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "mycomoly", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "mycomoly",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/comoly-release-key.jks",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "mycomolykeyalias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      package_name: "com.comolygmbh.android",
+      aab: "../build/app/outputs/bundle/mycomolyRelease/app-mycomoly-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true
+    )
+  end
+
+  desc "MAES EV - Submit a new build to Firebase"
+  lane :releaseFirebaseMaesEv do |options|
+    puts "MAES EV Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "maesev", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",
+    flavor: "maesev",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/maesev.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "maesevKeyAlias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:647207039205:android:c9adde83b6449cc890640c",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      apk_path: "../build/app/outputs/apk/maesev/release/app-maesev-release.apk"
+    )
+  end
+
+  desc "MAES EV - Deploy a new version to the Google Play"
+  lane :releaseGooglePlayMaesEv do
+    puts "MAES EV Releasing to Google Play Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "maesev", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "maesev",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/maesev.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "maesevKeyAlias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      package_name: "com.maesev.android",
+      aab: "../build/app/outputs/bundle/maesevRelease/app-maesev-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true,
+      rollout: "1"
+    )
+  end
+
+  desc "MAES EV - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalMaesEv do
+    puts "MAES EV Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "maesev", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "maesev",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/maesev.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "maesevKeyAlias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      package_name: "com.maesev.android",
+      aab: "../build/app/outputs/bundle/maesevRelease/app-maesev-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true
+    )
+  end
+
+  desc "Kia Charge NL - Submit a new build to Firebase"
+  lane :releaseFirebaseKiaChargeNl do |options|
+    puts "Kia Charge NL Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "kiachargenl", output: "apk", version_name: version_number, version_code: build_number)
+
+    gradle(task: "assemble",
+    flavor: "kiachargenl",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/kiacharge-nl.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "kiaChargeKeyAlias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    firebase_app_distribution(
+      app: "1:14789174187:android:f14431016ec82c8db3e8ee",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      apk_path: "../build/app/outputs/apk/kiachargenl/release/app-kiachargenl-release.apk"
+    )
+  end
+
+  desc "Kia Charge NL - Deploy a new version to the Google Play"
+  lane :releaseGooglePlayKiaChargeNl do
+    puts "Kia Charge NL Releasing to Google Play Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "kiachargenl", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "kiachargenl",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/kiacharge-nl.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "kiaChargeKeyAlias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      package_name: "com.kia.kiachargenl",
+      aab: "../build/app/outputs/bundle/kiachargenlRelease/app-kiachargenl-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true,
+      rollout: "1"
+    )
+  end
+
+  desc "Kia Charge NL - Deploy a new version to the Google Play internal testing track"
+  lane :releaseGooglePlayInternalKiaChargeNl do
+    puts "Kia Charge NL Releasing to Google Play internal testing track"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    flutter_build_app(project_root: flutter_project_root, flavor: "kiachargenl", output: "appbundle", version_name: version_number, version_code: build_number)
+
+    gradle(task: "bundle",
+    flavor: "kiachargenl",
+    build_type: "Release",
+    properties: {
+      "android.injected.signing.store.file" => "#{flutter_project_root}/android/fastlane/kiacharge-nl.keystore",
+      "android.injected.signing.store.password" => "12345678",
+      "android.injected.signing.key.alias" => "kiaChargeKeyAlias",
+      "android.injected.signing.key.password" => "12345678",
+      "android.injected.version.name" => version_number,
+      "android.injected.version.code" => build_number
+    })
+
+    upload_to_play_store(
+      track: "internal",
+      package_name: "com.kia.kiachargenl",
+      aab: "../build/app/outputs/bundle/kiachargenlRelease/app-kiachargenl-release.aab",
+      changes_not_sent_for_review: true,
+      skip_upload_metadata: true
+    )
+  end
+
+  desc "Build white label apps - Release to Firebase"
+  lane :releaseFirebaseAllWhiteLabel do
+    run_lanes_with_summary(white_label_firebase_lanes)
+  end
+
+  desc "Build white label apps - Release to Google Play"
+  lane :releaseGooglePlayAllWhiteLabel do
+    run_lanes_with_summary(white_label_google_play_lanes)
+  end
+
+  desc "Build white label apps - Release to Google Play internal testing track"
+  lane :releaseGooglePlayInternalAllWhiteLabel do
+    run_lanes_with_summary(white_label_google_play_internal_lanes)
+  end
+
+  desc "Build all apps - Release to Firebase"
+  lane :releaseFirebaseAll do
+    run_lanes_with_summary({ "E-Flux" => -> { releaseFirebaseEFlux } }.merge(white_label_firebase_lanes))
+  end
+
+  desc "Build all apps - Release to App Store"
+  lane :releaseAppStoreAll do
+
+    releaseGooglePlayEFlux
+    releaseGooglePlayFriwigo
+    # releaseGooglePlayEzdrive
+    # releaseGooglePlayEzdriveVcity
+    # releaseGooglePlayNxt50five
+  end
+end

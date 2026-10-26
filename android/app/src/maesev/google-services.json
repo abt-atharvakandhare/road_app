@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "647207039205",
+    "project_id": "maes-ev",
+    "storage_bucket": "maes-ev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647207039205:android:c9adde83b6449cc890640c",
+        "android_client_info": {
+          "package_name": "com.maesev.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoRygV12u0TthFIS7IqqFwWEHDayD67U4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

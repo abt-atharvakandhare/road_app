@@ -1,0 +1,154 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "org.jetbrains.kotlin.plugin.compose"
+    id "dev.flutter.flutter-gradle-plugin"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+    // END: FlutterFire Configuration
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
+    }
+
+    namespace 'com.eflux.ev'
+    // Override Flutter's default (35) so the API 36 Live Update / promoted-ongoing
+    // notification APIs are visible at compile time. We still target whatever
+    // Flutter does at runtime — only references in the SDK_INT >= 36 branches use
+    // the new types.
+    compileSdkVersion 36
+    ndkVersion "28.2.13676358"
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    defaultConfig {
+        applicationId "com.eflux.ev"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
+        // Bumped from flutter.minSdkVersion (21) → 26 to satisfy Patrol's
+        // experiment/http-proxy branch (its updated http4k version requires
+        // Android 8.0+). Tied to the patrol git ref in pubspec.yaml; revert
+        // when upstream patrol #2791 lands on a pub.dev release.
+        minSdkVersion 26
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutter.versionCode
+        versionName flutter.versionName
+        manifestPlaceholders = [
+            MAPS_API_KEY: localProperties.getProperty('MAPS_API_KEY', '')
+        ]
+        // BrowserstackPatrolJUnitRunner first tries localhost:8082 (works
+        // locally via adb reverse), then falls back to the BrowserStack tun0
+        // tunnel IP. So it's safe everywhere; switching back to the plain
+        // PatrolJUnitRunner only saves the one failed localhost probe on BS.
+        testInstrumentationRunner "pl.leancode.patrol.BrowserstackPatrolJUnitRunner"
+        // No clearPackageData: app data must survive between tests so the e2e
+        // suite can reuse one logged-in session per device run instead of a
+        // password login per test (the API's per-account login throttle locks
+        // the shared staging account out otherwise). Per-test isolation is
+        // handled by resetAppState() in integration_test/_helpers/reset.dart —
+        // the same mechanism iOS uses, which has no package-wipe equivalent.
+        testInstrumentationRunnerArguments clearPackageData: "false"
+    }
+
+    testOptions {
+        execution "ANDROIDX_TEST_ORCHESTRATOR"
+    }
+
+    // Required by Patrol's experiment/http-proxy branch. Strips duplicate
+    // META-INF entries that the updated http4k brings in.
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/INDEX.LIST', 'META-INF/*.properties']
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+
+        debug {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }  
+
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig signingConfigs.release
+        }
+        debug {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation 'com.checkout:checkout-android-components:2.5.0'
+    implementation 'com.checkout:checkout-android-components-wallet:2.5.0'
+    implementation 'com.google.android.gms:play-services-maps:20.0.0'
+    implementation 'com.google.android.gms:play-services-wallet:20.0.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+    implementation("androidx.car.app:app:1.7.0")
+    testImplementation 'junit:junit:4.13.2'
+    androidTestUtil 'androidx.test:orchestrator:1.6.1'
+}
+
+
+
+// A flavor-suffixed MAPS_API_KEY_<FLAVOR> in local.properties overrides the
+// shared MAPS_API_KEY for that flavor (white-label brands supply their own
+// Google Maps keys).
+android.productFlavors.all { flavor ->
+    def flavorKey = localProperties.getProperty("MAPS_API_KEY_${flavor.name.toUpperCase()}")
+    if (flavorKey != null) {
+        flavor.manifestPlaceholders = [MAPS_API_KEY: flavorKey]
+    }
+}
+// ----- BEGIN flavorDimensions (autogenerated by flutter_flavorizr) -----
+apply from: "flavorizr.gradle"
+// ----- END flavorDimensions (autogenerated by flutter_flavorizr) -----

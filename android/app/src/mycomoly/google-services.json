@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "911711207599",
+    "project_id": "comoly-operations-gmbh",
+    "storage_bucket": "comoly-operations-gmbh.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911711207599:android:9a478ed22445818cfc945a",
+        "android_client_info": {
+          "package_name": "com.comolygmbh.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNrLbGsrIB7qERSs5OeqRMlvlEaz_ni6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1092046543349",
+    "project_id": "ezdrive--v-city",
+    "storage_bucket": "ezdrive--v-city.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092046543349:android:049f29459c0c63af1e28bc",
+        "android_client_info": {
+          "package_name": "fr.ezdrive.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6PfViRq_feKlmghHBrahqrH15fQ5XyFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39572061140",
+    "project_id": "v-city-la-reunion",
+    "storage_bucket": "v-city-la-reunion.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39572061140:android:7feab3bf95292e042d7441",
+        "android_client_info": {
+          "package_name": "com.vcityreunion.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYepTshogZOUQWu3NY__WKy1MwDqdnHkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

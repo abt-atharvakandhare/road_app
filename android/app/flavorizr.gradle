@@ -1,0 +1,66 @@
+android {
+    flavorDimensions += "flavor-type"
+
+    productFlavors {
+        eflux {
+            dimension "flavor-type"
+            applicationId "com.eflux.ev"
+            resValue "string", "app_name", "E-Flux EV"
+        }
+        elexon {
+            dimension "flavor-type"
+            applicationId "com.elexoncharging.android"
+            resValue "string", "app_name", "Elexon EV"
+        }
+        opcharge {
+            dimension "flavor-type"
+            applicationId "com.opcharge.android"
+            resValue "string", "app_name", "Opcharge EV"
+        }
+        friwigo {
+            dimension "flavor-type"
+            applicationId "com.friwigo.android"
+            resValue "string", "app_name", "FRIWIGO EV"
+        }
+        ezdrive {
+            dimension "flavor-type"
+            applicationId "fr.ezdrive.android"
+            resValue "string", "app_name", "V-CiTY"
+        }
+        nxt50five {
+            dimension "flavor-type"
+            applicationId "nl.nxt50five.android"
+            resValue "string", "app_name", "NXT 50five EV"
+        }
+        ezdriveplus {
+            dimension "flavor-type"
+            applicationId "fr.ezdrive.plus.android"
+            resValue "string", "app_name", "EZDrive+"
+        }
+        vcityreunion {
+            dimension "flavor-type"
+            applicationId "com.vcityreunion.android"
+            resValue "string", "app_name", "V-City Réunion"
+        }
+        nxtmobility {
+            dimension "flavor-type"
+            applicationId "com.nxtmobility.android"
+            resValue "string", "app_name", "NXT Charge"
+        }
+        mycomoly {
+            dimension "flavor-type"
+            applicationId "com.comolygmbh.android"
+            resValue "string", "app_name", "myCoMoly"
+        }
+        maesev {
+            dimension "flavor-type"
+            applicationId "com.maesev.android"
+            resValue "string", "app_name", "MAES EV"
+        }
+        kiachargenl {
+            dimension "flavor-type"
+            applicationId "com.kia.kiachargenl"
+            resValue "string", "app_name", "Kia Charge NL"
+        }
+    }
+}
