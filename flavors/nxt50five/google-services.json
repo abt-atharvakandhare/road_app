@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "848011980961",
+    "project_id": "nxt-50five",
+    "storage_bucket": "nxt-50five.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848011980961:android:bb78066f3e0c8684b2c0e0",
+        "android_client_info": {
+          "package_name": "nl.nxt50five.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSSVlXwlLO7SKzrj9-4Ab3uBzLFIQY_qQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

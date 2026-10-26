@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "300167369900",
+    "project_id": "eflux-mobile",
+    "storage_bucket": "eflux-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300167369900:android:52add3639effa8cf693b09",
+        "android_client_info": {
+          "package_name": "com.eflux.ev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300167369900-bhe69cva3febh2t1jdb2bls79hl5uute.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZDoysrbpfQD1_RTFuaArfX-ihICeZ8RU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300167369900-bhe69cva3febh2t1jdb2bls79hl5uute.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "300167369900-bltgn1t6hbi0d0mbcbdivjg5va4lkvqn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.e-flux.roadmobile"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300167369900:android:9b08214f024dc313693b09",
+        "android_client_info": {
+          "package_name": "com.elexoncharging.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300167369900-bhe69cva3febh2t1jdb2bls79hl5uute.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZDoysrbpfQD1_RTFuaArfX-ihICeZ8RU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300167369900-bhe69cva3febh2t1jdb2bls79hl5uute.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "300167369900-bltgn1t6hbi0d0mbcbdivjg5va4lkvqn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.e-flux.roadmobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

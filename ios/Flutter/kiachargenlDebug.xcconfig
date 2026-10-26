@@ -1,0 +1,6 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
+#include "Generated.xcconfig"
+
+ASSET_PREFIX=kiachargenl
+BUNDLE_NAME=Kia Charge NL
+BUNDLE_DISPLAY_NAME=Kia Charge NL

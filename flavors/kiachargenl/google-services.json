@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "14789174187",
+    "project_id": "kia-charge-nl",
+    "storage_bucket": "kia-charge-nl.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14789174187:android:f14431016ec82c8db3e8ee",
+        "android_client_info": {
+          "package_name": "com.kia.kiachargenl"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIRokuy3DGDbFzababhzXp1CqiZHx7C6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

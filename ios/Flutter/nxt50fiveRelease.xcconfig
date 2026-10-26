@@ -1,0 +1,6 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
+#include "Generated.xcconfig"
+
+ASSET_PREFIX=nxt50five
+BUNDLE_NAME=NXT 50five EV
+BUNDLE_DISPLAY_NAME=NXT 50five EV
