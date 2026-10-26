@@ -1,0 +1,21 @@
+{
+    "currency": "EUR",
+    "elements": [
+      {
+        "priceComponents": [
+          {
+            "type": "ENERGY",
+            "price": 0.55,
+            "stepSize": 1,
+            "vat": 21
+          },
+          {
+            "type": "PARKING_TIME",
+            "price": 4.8,
+            "stepSize": 60,
+            "vat": 21
+          }
+        ]
+      }
+    ]
+  }

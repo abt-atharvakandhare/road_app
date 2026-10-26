@@ -1,0 +1,59 @@
+{
+    "currency": "EUR",
+    "elements": [
+      {
+        "priceComponents": [
+          {
+            "type": "FLAT",
+            "price": 2.5,
+            "stepSize": 1,
+            "vat": 21
+          }
+        ]
+      },
+      {
+        "priceComponents": [
+          {
+            "type": "ENERGY",
+            "price": 1,
+            "stepSize": 1000,
+            "vat": 21
+          }
+        ]
+      },
+      {
+        "priceComponents": [
+          {
+            "type": "TIME",
+            "price": 0,
+            "stepSize": 60,
+            "vat": 21
+          }
+        ],
+        "restrictions": {
+          "startTime": "00:00",
+          "endTime": "23:59",
+          "dayOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "minDuration": 0
+        }
+      },
+      {
+        "priceComponents": [
+          {
+            "type": "TIME",
+            "price": 0,
+            "stepSize": 60,
+            "vat": 21
+          }
+        ]
+      }
+    ]
+  }

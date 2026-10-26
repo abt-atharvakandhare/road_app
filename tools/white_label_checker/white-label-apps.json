@@ -1,0 +1,154 @@
+{
+  "white_label_apps": [
+    {
+      "name": "V-CiTY Antilles-Guyane",
+      "client": "EZDRIVE",
+      "maintainer": "Road",
+      "status": "active",
+      "slack_thread": "1748332885.357629",
+      "apple_store_url": "https://apps.apple.com/us/app/v-city-antilles-guyane/id6505060120",
+      "google_play_url": "https://play.google.com/store/apps/details?id=fr.ezdrive.android",
+      "apple_bundle_id": "id6505060120",
+      "android_package_name": "fr.ezdrive.android",
+      "notes": "V-CiTY app for EV charging in Antilles and Guyane (iOS bundle fr.ezdrive.ios). Part of EZdrive family, along with EZdrive+ and V-City Réunion."
+    },
+    {
+      "name": "V-City Réunion",
+      "client": "EZDRIVE",
+      "maintainer": "Andro Buddy",
+      "status": "active",
+      "slack_thread": "1748332885.357629",
+      "apple_store_url": "https://apps.apple.com/fr/app/v-city-r%C3%A9union/id6748018709",
+      "google_play_url": "https://play.google.com/store/apps/details?id=com.vcityreunion.android",
+      "apple_bundle_id": "id6748018709",
+      "android_package_name": "com.vcityreunion.android",
+      "notes": "V-City app for EV charging in Réunion (iOS bundle com.vcityreunion.ios, Apple seller 'Suraya'). Part of EZdrive family, along with EZdrive+ and V-CiTY Antilles-Guyane."
+    },
+    {
+      "name": "Kia Charge NL",
+      "client": "Kia",
+      "maintainer": "Andro Buddy",
+      "status": "active",
+      "slack_thread": "1745839822.250699",
+      "apple_store_url": "https://apps.apple.com/nl/app/kia-charge-nl/id6749898462",
+      "google_play_url": "https://play.google.com/store/apps/details?id=com.kia.kiachargenl",
+      "apple_bundle_id": "id6749898462",
+      "android_package_name": "com.kia.kiachargenl",
+      "notes": "Kia Charge NL - Netherlands-specific version of Kia's EV charging app."
+    },
+    {
+      "name": "NXT Charge",
+      "client": "NXT Mobility",
+      "maintainer": "Andro Buddy",
+      "status": "active",
+      "slack_thread": null,
+      "apple_store_url": "https://apps.apple.com/us/app/nxt-charge/id6745205963",
+      "google_play_url": "https://play.google.com/store/apps/details?id=com.nxtmobility.android",
+      "apple_bundle_id": "id6745205963",
+      "android_package_name": "com.nxtmobility.android",
+      "notes": "Published on both Google Play and Apple App Store. This is DIFFERENT from 'NXT 50five EV' (package: nl.nxt50five.android) - separate apps serving different territories."
+    },
+    {
+      "name": "Comoly",
+      "client": "Comoly",
+      "maintainer": "Andro Buddy",
+      "status": "active",
+      "slack_thread": null,
+      "apple_store_url": "https://apps.apple.com/us/app/mycomoly/id6746156426",
+      "google_play_url": "https://play.google.com/store/apps/details?id=com.comolygmbh.android",
+      "apple_bundle_id": "id6746156426",
+      "android_package_name": "com.comolygmbh.android",
+      "notes": "Published on both Google Play and Apple App Store."
+    },
+    {
+      "name": "EZdrive+",
+      "client": "EZDRIVE",
+      "maintainer": "Road",
+      "status": "active",
+      "slack_thread": null,
+      "apple_store_url": "https://apps.apple.com/us/app/ezdrive/id6741297262",
+      "google_play_url": "https://play.google.com/store/apps/details?id=fr.ezdrive.plus.android",
+      "apple_bundle_id": "id6741297262",
+      "android_package_name": "fr.ezdrive.plus.android",
+      "notes": "Part of EZdrive family, along with V-City Reunion."
+    },
+    {
+      "name": "reGard",
+      "client": "Bouygues - reGard",
+      "maintainer": "Andro Buddy",
+      "status": "postponed",
+      "slack_thread": "1753946489.217489",
+      "apple_store_url": null,
+      "google_play_url": null,
+      "apple_bundle_id": null,
+      "android_package_name": null,
+      "notes": "Project postponed (not cancelled). No publication occurred."
+    },
+    {
+      "name": "Energu",
+      "client": "Energu",
+      "maintainer": "Andro Buddy",
+      "status": "postponed",
+      "slack_thread": "1752850008.992279",
+      "apple_store_url": null,
+      "google_play_url": null,
+      "apple_bundle_id": null,
+      "android_package_name": null,
+      "notes": "Postponed to Q1 2026."
+    },
+    {
+      "name": "MAES EV",
+      "client": "MAES Energy & Mobility",
+      "maintainer": "Andro Buddy",
+      "status": "active",
+      "slack_thread": null,
+      "apple_store_url": "https://apps.apple.com/be/app/maes-ev/id6758733269",
+      "google_play_url": "https://play.google.com/store/apps/details?id=com.maesev.android",
+      "apple_bundle_id": "id6758733269",
+      "android_package_name": "com.maesev.android",
+      "notes": "Published on both Google Play and Apple App Store."
+    },
+    {
+      "name": "E-Flux by Road",
+      "client": "Road.io (Internal/Main App)",
+      "maintainer": "Road",
+      "status": "active",
+      "slack_thread": null,
+      "apple_store_url": "https://apps.apple.com/us/app/e-flux-by-road/id1488299113",
+      "google_play_url": "https://play.google.com/store/apps/details?id=com.eflux.ev",
+      "apple_bundle_id": "id1488299113",
+      "android_package_name": "com.eflux.ev",
+      "notes": "Road's main branded app for EV charging. Managed internally by Road, not a white label app."
+    },
+    {
+      "name": "FRIWIGO EV",
+      "client": "FRIWIGO",
+      "maintainer": "Road",
+      "status": "active",
+      "slack_thread": null,
+      "apple_store_url": "https://apps.apple.com/us/app/friwigo-recharge-%C3%A9lectrique/id6504486568",
+      "google_play_url": "https://play.google.com/store/apps/details?id=com.friwigo.android",
+      "apple_bundle_id": "id6504486568",
+      "android_package_name": "com.friwigo.android",
+      "notes": "FRIWIGO electric vehicle charging app. Managed internally by Road."
+    },
+    {
+      "name": "NXT 50five EV",
+      "client": "NXT 50five",
+      "maintainer": "Road",
+      "status": "active",
+      "slack_thread": null,
+      "apple_store_url": "https://apps.apple.com/us/app/nxt-50five-ev/id6738348285",
+      "google_play_url": "https://play.google.com/store/apps/details?id=nl.nxt50five.android",
+      "apple_bundle_id": "id6738348285",
+      "android_package_name": "nl.nxt50five.android",
+      "notes": "Published on both stores. This is DIFFERENT from 'NXT Charge' (package: com.nxtmobility.android) - separate apps serving different territories."
+    }
+  ],
+  "summary": {
+    "total_apps": 12,
+    "active": 10,
+    "postponed": 2
+  },
+  "last_updated": "2026-08-31"
+}
