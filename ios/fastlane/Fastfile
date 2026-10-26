@@ -1,0 +1,638 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+version_number = flutter_version(pubspec_location: "../pubspec.yaml")["version_name"]
+build_number = flutter_version(pubspec_location: "../pubspec.yaml")["version_code"]
+commits_count_white_label = prompt(text: "How many git history entries to include for white label: ")
+commits_count_eflux = prompt(text: "How many git history entries to include for E-Flux: ")
+
+# Find ITC Team ID at https://appstoreconnect.apple.com/WebObjects/iTunesConnect.woa/ra/user/detail
+# or use 'fastlane spaceship'
+
+road_internal_testers = "r@ymon.do, berend@road.io, g.grasarevic@gmail.com, kaare@road.io, mikey@road.io, peter@yukaii.com, harmen.nauta@road.io, peter.cuhalev@road.io, denzil.naggan@road.io, rustem@road.io, denys.parchenko@road.io, amir.soleimaniniaki@road.io, ivan.morardo@road.io, amy.cao@road.io, tanishka.majukar@road.io, vincent@road.io"
+app_store_app_specific_password = ENV["APPLE_STORE_APP_SPECIFIC_PASSWORD"]
+
+# Mirror of the Android lane hardening: `flutter clean` wipes build/ and
+# .dart_tool/ so Xcode cannot package a stale App.framework (compiled Dart AOT)
+# left in build/ios by a previous build of another branch. `flutter build ipa`
+# then compiles fresh from the current source and regenerates the plugin registrant.
+def flutter_build_ipa(flavor:, export_method: nil)
+  sh("flutter", "clean")
+  args = ["flutter", "build", "ipa", "--flavor=#{flavor}"]
+  args << "--export-method=#{export_method}" if export_method
+  sh(*args)
+end
+
+# Maps known failure signatures to the next step that actually fixes them,
+# shown alongside the raw error in the end-of-run summary.
+def failure_hint(error)
+  case error
+  when /Program License Agreement|PLA Update/i
+    "The team's Account Holder (named in the error) must log in at developer.apple.com → Membership and accept the new agreement. Nothing to fix locally."
+  when /membership.*(expired|on hold)|renew your (Apple Developer|membership)/i
+    "The Apple Developer membership for this team has lapsed — renew it at developer.apple.com → Membership."
+  when /Invalid username and password|Your session has expired|Two-(factor|step).*(required|expired)/i
+    "Apple session is stale — run `bundle exec fastlane spaceauth -u r@ymon.do` and re-run the lane."
+  when /firebase|invalid_grant|refresh token/i
+    "Firebase CLI auth problem — run `firebase login --reauth` and re-run the lane."
+  when /Exit status of command 'flutter/i
+    "The Flutter build itself failed — scroll up to this app's `flutter build ipa` output for the real error."
+  end
+end
+
+# Runs each app's release lane in turn, catching failures (commonly an
+# out-of-date Apple account/session in get_certificates) so one broken app
+# does not stop the remaining apps. Prints a per-app status summary at the
+# end and only then fails the lane if any app failed.
+def run_lanes_with_summary(lanes)
+  results = {}
+  lanes.each do |name, release_lane|
+    begin
+      release_lane.call
+      results[name] = nil
+    rescue => e
+      UI.error("#{name} failed: #{e.message}")
+      results[name] = e.message.to_s.gsub(/\s+/, " ").strip[0, 400]
+    end
+  end
+
+  UI.header("Release status")
+  results.each do |name, error|
+    if error
+      UI.error("❌ #{name} — #{error}")
+      hint = failure_hint(error)
+      UI.important("   ↳ Next step: #{hint}") if hint
+    else
+      UI.success("✅ #{name}")
+    end
+  end
+
+  failed = results.select { |_, error| error }.keys
+  UI.user_error!("Failed releases: #{failed.join(', ')}") unless failed.empty?
+end
+
+# Shared roster for the aggregate Firebase lanes below.
+def white_label_firebase_lanes
+  {
+    "Friwigo" => -> { releaseFriwigoFirebase },
+    "EZdrive V-CiTY" => -> { releaseEzdriveFirebase },
+    "EZDrive+" => -> { releaseEzdrivePlusFirebase },
+    "NXT 50five" => -> { releasenxt50fiveFirebase },
+    "V-City Réunion" => -> { releaseVcityReunionFirebase },
+    "NXT Charge" => -> { releaseNxtMobilityFirebase },
+    "myCoMoly" => -> { releaseMyComolyFirebase },
+    "MAES EV" => -> { releaseMaesEvFirebase },
+    "Kia Charge NL" => -> { releaseKiaChargeNlFirebase },
+  }
+end
+
+# Shared roster for the aggregate App Store lane below.
+def white_label_app_store_lanes
+  {
+    "Friwigo" => -> { releaseFriwigoAppStore },
+    "EZdrive V-CiTY" => -> { releaseVcityAppStore },
+    "EZDrive+" => -> { releaseEzdrivePlusAppStore },
+    "NXT 50five" => -> { releasenxt50fiveAppStore },
+    "V-City Réunion" => -> { releaseVcityReunionAppStore },
+    "NXT Charge" => -> { releaseNxtMobilityAppStore },
+    "myCoMoly" => -> { releaseMyComolyAppStore },
+    "MAES EV" => -> { releaseMaesEvAppStore },
+    "Kia Charge NL" => -> { releaseKiaChargeNlAppStore },
+  }
+end
+
+platform :ios do
+  desc "E-Flux - Release to App Store"
+  lane :releaseEFluxAppStore do
+    ENV["APP_IDENTIFIER"] = "com.e-flux.orange"
+    ENV["TEAM_ID"] = "56VKX64ZT9"
+    ENV["ITC_TEAM_ID"] = "120702658"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "Releasing to App Store"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "eflux")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/E-Flux\ EV.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  desc "E-Flux - Release to Firebase"
+  lane :releaseEFluxFirebase do
+    ENV["APP_IDENTIFIER"] = "com.e-flux.orange"
+    ENV["TEAM_ID"] = "56VKX64ZT9"
+    ENV["ITC_TEAM_ID"] = "120702658"
+
+    puts "E-Flux Releasing to Firebase"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "eflux", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:300167369900:ios:60d9e9c7f737cc2c693b09",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_eflux),
+      ipa_path: "../build/ios/ipa/E-Flux\ EV.ipa" 
+    )
+  end
+
+  desc "Friwigo - Release to Firebase"
+  lane :releaseFriwigoFirebase do
+    ENV["APP_IDENTIFIER"] = "com.friwigo.ios"
+    ENV["TEAM_ID"] = "T348GSK95P"
+    ENV["ITC_TEAM_ID"] = "127112440"
+
+    puts "Friwigo - Releasing to Firebase"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "friwigo", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:478063358251:ios:54fe1686f3a21aec6cd56e",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      ipa_path: "../build/ios/ipa/Friwigo\ EV.ipa"
+    )
+  end
+
+  desc "Friwigo - Release to App Store"
+  lane :releaseFriwigoAppStore do
+    ENV["APP_IDENTIFIER"] = "com.friwigo.ios"
+    ENV["TEAM_ID"] = "T348GSK95P"
+    ENV["ITC_TEAM_ID"] = "127112440"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "Friwigo - Releasing to App Store"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "friwigo")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/FRIWIGO\ EV.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  desc "EZdrive V-CiTY - Release to Firebase"
+  lane :releaseEzdriveFirebase do
+    ENV["APP_IDENTIFIER"] = "fr.ezdrive.ios"
+    ENV["TEAM_ID"] = "57QYWMAUTH"
+    ENV["ITC_TEAM_ID"] = "127086986"
+
+    puts "EZdrive V-CiTY - Releasing to Firebase"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "ezdrive", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:1092046543349:ios:e2d45cd90b26f3db1e28bc",
+      testers: road_internal_testers, #, m.seytor@gmail.com, aurelie.j.homand@gmail.com, frederic.baulard@ezdrive.fr, odile.coumau@ezdrive.fr, ribeaucourtlisa@gmail.com, siahtsca@gmail.com, atkearney1967@gmail.com, christinedubarry97@gmail.com, jean-luc.halley@ezdrive.fr",
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      ipa_path: "../build/ios/ipa/V-CiTY.ipa"
+    )
+  end
+
+  desc "EZdrive V-CiTY - Release to App Store"
+  lane :releaseVcityAppStore do
+    ENV["APP_IDENTIFIER"] = "fr.ezdrive.ios"
+    ENV["TEAM_ID"] = "57QYWMAUTH"
+    ENV["ITC_TEAM_ID"] = "127086986"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "Releasing to App Store"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "ezdrive")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/V-CiTY.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  desc "EZDrive+ - Release to Firebase"
+  lane :releaseEzdrivePlusFirebase do
+    ENV["APP_IDENTIFIER"] = "fr.ezdrive.plus.ios"
+    ENV["TEAM_ID"] = "VF5Y7LW86P"
+    ENV["ITC_TEAM_ID"] = "126335379"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+
+    puts "EZDrive+ - Releasing to Firebase"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "ezdriveplus", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:610287905076:ios:8336274952d5668b495d61",
+      testers: road_internal_testers, # m.seytor@gmail.com, aurelie.j.homand@gmail.com, frederic.baulard@ezdrive.fr, odile.coumau@ezdrive.fr, ribeaucourtlisa@gmail.com, siahtsca@gmail.com, atkearney1967@gmail.com, christinedubarry97@gmail.com, jean-luc.halley@ezdrive.fr",
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      ipa_path: "../build/ios/ipa/EZDrive+.ipa"
+    )
+  end
+
+  desc "EZDrive+ - Release to App Store"
+  lane :releaseEzdrivePlusAppStore do
+    ENV["APP_IDENTIFIER"] = "fr.ezdrive.plus.ios"
+    ENV["TEAM_ID"] = "VF5Y7LW86P"
+    ENV["ITC_TEAM_ID"] = "126335379"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "EZDrive+ Releasing to App Store"
+    puts "-----------------------"
+    puts "Version: #{version_number}"
+    puts "Build: #{build_number}"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "ezdriveplus")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/EZDrive+.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  desc "NXT 50five - Release to Firebase"
+  lane :releasenxt50fiveFirebase do
+    ENV["APP_IDENTIFIER"] = "nl.nxt50five.ios"
+    ENV["TEAM_ID"] = "6MRB4UZY74"
+    ENV["ITC_TEAM_ID"] = "127448533"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "NXT 50five - Releasing to Firebase"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "nxt50five", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:848011980961:ios:81f8644a10f906b9b2c0e0",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      ipa_path: "../build/ios/ipa/NXT\ 50five\ EV.ipa"
+    )
+  end
+
+  desc "NXT 50five - Release to App Store"
+  lane :releasenxt50fiveAppStore do
+    ENV["APP_IDENTIFIER"] = "nl.nxt50five.ios"
+    ENV["TEAM_ID"] = "6MRB4UZY74"
+    ENV["ITC_TEAM_ID"] = "127448533"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "NXT 50five - Releasing to App Store"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "nxt50five")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/NXT\ 50five\ EV.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  # Lanes for the brands taken over from the ABT partner fork.
+
+  desc "V-City Réunion - Release to Firebase"
+  lane :releaseVcityReunionFirebase do
+    ENV["APP_IDENTIFIER"] = "com.vcityreunion.ios"
+    ENV["TEAM_ID"] = "VF5Y7LW86P"
+    ENV["ITC_TEAM_ID"] = "126335379"
+
+    puts "V-City Réunion - Releasing to Firebase"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "vcityreunion", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:39572061140:ios:bc7ae58eb4080ee02d7441",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      ipa_path: "../build/ios/ipa/V-City\ Réunion.ipa"
+    )
+  end
+
+  desc "V-City Réunion - Release to App Store"
+  lane :releaseVcityReunionAppStore do
+    ENV["APP_IDENTIFIER"] = "com.vcityreunion.ios"
+    ENV["TEAM_ID"] = "VF5Y7LW86P"
+    ENV["ITC_TEAM_ID"] = "126335379"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "V-City Réunion - Releasing to App Store"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "vcityreunion")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/V-City\ Réunion.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  desc "NXT Charge - Release to Firebase"
+  lane :releaseNxtMobilityFirebase do
+    ENV["APP_IDENTIFIER"] = "com.nxtmobility.ios"
+    ENV["TEAM_ID"] = "GJDJUHFRAV"
+    ENV["ITC_TEAM_ID"] = "127762192"
+
+    puts "NXT Charge - Releasing to Firebase"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "nxtmobility", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:985641511122:ios:29db23952b11f8ce69e50b",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      ipa_path: "../build/ios/ipa/NXT\ Charge.ipa"
+    )
+  end
+
+  desc "NXT Charge - Release to App Store"
+  lane :releaseNxtMobilityAppStore do
+    ENV["APP_IDENTIFIER"] = "com.nxtmobility.ios"
+    ENV["TEAM_ID"] = "GJDJUHFRAV"
+    ENV["ITC_TEAM_ID"] = "127762192"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "NXT Charge - Releasing to App Store"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "nxtmobility")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/NXT\ Charge.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  desc "myCoMoly - Release to Firebase"
+  lane :releaseMyComolyFirebase do
+    ENV["APP_IDENTIFIER"] = "com.comolygmbh.ios"
+    ENV["TEAM_ID"] = "G6HK234T72"
+    ENV["ITC_TEAM_ID"] = "127560138"
+
+    puts "myCoMoly - Releasing to Firebase"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "mycomoly", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:911711207599:ios:4fabffe28fd35a01fc945a",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      ipa_path: "../build/ios/ipa/myCoMoly.ipa"
+    )
+  end
+
+  desc "myCoMoly - Release to App Store"
+  lane :releaseMyComolyAppStore do
+    ENV["APP_IDENTIFIER"] = "com.comolygmbh.ios"
+    ENV["TEAM_ID"] = "G6HK234T72"
+    ENV["ITC_TEAM_ID"] = "127560138"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "myCoMoly - Releasing to App Store"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "mycomoly")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/myCoMoly.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  desc "MAES EV - Release to Firebase"
+  lane :releaseMaesEvFirebase do
+    ENV["APP_IDENTIFIER"] = "com.maesev.ios"
+    ENV["TEAM_ID"] = "B4AAZ94SET"
+    ENV["ITC_TEAM_ID"] = "117132402"
+
+    puts "MAES EV - Releasing to Firebase"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "maesev", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:647207039205:ios:d7fdfaf7ce417e1690640c",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      ipa_path: "../build/ios/ipa/MAES\ EV.ipa"
+    )
+  end
+
+  desc "MAES EV - Release to App Store"
+  lane :releaseMaesEvAppStore do
+    ENV["APP_IDENTIFIER"] = "com.maesev.ios"
+    ENV["TEAM_ID"] = "B4AAZ94SET"
+    ENV["ITC_TEAM_ID"] = "117132402"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "MAES EV - Releasing to App Store"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "maesev")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/MAES\ EV.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  desc "Kia Charge NL - Release to Firebase"
+  lane :releaseKiaChargeNlFirebase do
+    ENV["APP_IDENTIFIER"] = "com.kia.kiachargenl"
+    ENV["TEAM_ID"] = "RPEZ7ER4H6"
+    ENV["ITC_TEAM_ID"] = "118120270"
+
+    puts "Kia Charge NL - Releasing to Firebase"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "kiachargenl", export_method: "ad-hoc")
+
+    firebase_app_distribution(
+      app: "1:14789174187:ios:4ee1112a4c037457b3e8ee",
+      testers: road_internal_testers,
+      release_notes: changelog_from_git_commits(merge_commit_filtering: "exclude_merges", commits_count: commits_count_white_label),
+      ipa_path: "../build/ios/ipa/Kia\ Charge\ NL.ipa"
+    )
+  end
+
+  desc "Kia Charge NL - Release to App Store"
+  lane :releaseKiaChargeNlAppStore do
+    ENV["APP_IDENTIFIER"] = "com.kia.kiachargenl"
+    ENV["TEAM_ID"] = "RPEZ7ER4H6"
+    ENV["ITC_TEAM_ID"] = "118120270"
+    ENV["ENVFASTLANE_USER"]="r@ymon.do"
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]=app_store_app_specific_password
+
+    puts "Kia Charge NL - Releasing to App Store"
+    puts "-----------------------"
+    puts "CFBundleVersion: #{build_number}"
+    puts "-----------------------"
+
+    get_certificates
+    get_provisioning_profile
+
+    flutter_build_ipa(flavor: "kiachargenl")
+
+    upload_to_app_store(
+      ipa: "../build/ios/ipa/Kia\ Charge\ NL.ipa",
+      skip_metadata: true,
+      skip_screenshots: true)
+  end
+
+  private_lane :upload_firebase do
+
+  end
+
+  desc "Build white label apps - Release to Firebase"
+  lane :releaseFirebaseAllWhiteLabel do
+    run_lanes_with_summary(white_label_firebase_lanes)
+  end
+
+  desc "Build white label apps - Release to App Store"
+  lane :releaseAppStoreAllWhiteLabel do
+    run_lanes_with_summary(white_label_app_store_lanes)
+  end
+
+  desc "Build all apps - Release to Firebase"
+  lane :releaseFirebaseAll do
+    run_lanes_with_summary({ "E-Flux" => -> { releaseEFluxFirebase } }.merge(white_label_firebase_lanes))
+  end
+
+  desc "Build all apps - Release to App Store"
+  lane :releaseAppStoreAll do
+
+    releaseEFluxAppStore
+    releaseFriwigoAppStore
+    # releaseVcityAppStore
+    # releaseEzdrivePlusAppStore
+    # releaseNxt50fiveAppStore
+    # releaseVcityReunionAppStore
+    # releaseNxtMobilityAppStore
+    # releaseMyComolyAppStore
+    # releaseMaesEvAppStore
+    # releaseKiaChargeNlAppStore
+  end
+end

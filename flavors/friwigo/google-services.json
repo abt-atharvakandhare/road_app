@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "478063358251",
+    "project_id": "friwigo-ev",
+    "storage_bucket": "friwigo-ev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478063358251:android:ecd29843e6eb3f246cd56e",
+        "android_client_info": {
+          "package_name": "com.friwigo.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsv8VRMCr2zRd8r0PyUIyTiNY9vf_1DBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,6 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
+#include "Generated.xcconfig"
+
+ASSET_PREFIX=opcharge
+BUNDLE_NAME=Opcharge EV
+BUNDLE_DISPLAY_NAME=Opcharge EV

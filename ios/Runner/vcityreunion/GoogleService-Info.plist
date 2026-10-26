@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyABT5TmDd1StUy0bI1IX4XFD8AIo58GraQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>39572061140</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.vcityreunion.ios</string>
+	<key>PROJECT_ID</key>
+	<string>v-city-la-reunion</string>
+	<key>STORAGE_BUCKET</key>
+	<string>v-city-la-reunion.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:39572061140:ios:bc7ae58eb4080ee02d7441</string>
+</dict>
+</plist>
