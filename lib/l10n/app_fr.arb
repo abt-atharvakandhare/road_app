@@ -1,0 +1,2081 @@
+{
+  "@@locale": "fr",
+  "about": "Plus d'informations",
+  "@about": {
+    "type": "text"
+  },
+  "aboutUs": "À propos de nous",
+  "@aboutUs": {
+    "type": "text"
+  },
+  "acceptPrivacyStatement": "Veuillez accepter la déclaration de confidentialité",
+  "@acceptPrivacyStatement": {
+    "type": "text"
+  },
+  "acceptTermsAndConditions": "Veuillez accepter les termes et conditions",
+  "@acceptTermsAndConditions": {
+    "type": "text"
+  },
+  "account": "Compte",
+  "@account": {
+    "type": "text"
+  },
+  "accountCreated": "Compte créé",
+  "@accountCreated": {
+    "type": "text"
+  },
+  "accountCreatedWelcomeOnBoard": "Compte créé. Bienvenue à bord !",
+  "@accountCreatedWelcomeOnBoard": {
+    "type": "text"
+  },
+  "accountRemovalIsPending": "Suppression du compte en cours",
+  "@accountRemovalIsPending": {
+    "type": "text"
+  },
+  "accountSettings": "Paramètres de compte",
+  "@accountSettings": {
+    "type": "text"
+  },
+  "active": "Actif",
+  "@active": {
+    "type": "text"
+  },
+  "activeNow": "ACTIF MAINTENANT",
+  "@activeNow": {
+    "type": "text"
+  },
+  "addAdditionalSecurity": "Renforcer la sécurité du compte avec des mesures supplémentaires.",
+  "@addAdditionalSecurity": {
+    "type": "text"
+  },
+  "addANetwork": "+ Add a network",
+  "@addANetwork": {
+    "type": "text"
+  },
+  "addCreditOrDebitCard": "Ajouter une carte de crédit ou de débit",
+  "@addCreditOrDebitCard": {
+    "type": "text"
+  },
+  "additionalFee": "Frais supplémentaires",
+  "@additionalFee": {
+    "type": "text"
+  },
+  "addPaymentMethod": "Ajouter un mode de paiement",
+  "@addPaymentMethod": {
+    "type": "text"
+  },
+  "addToFavourites": "Add to favourites",
+  "@addToFavourites": {
+    "type": "text"
+  },
+  "airport": "Aéroport",
+  "@airport": {
+    "type": "text"
+  },
+  "allNotifications": "Toutes les notifications",
+  "@allNotifications": {
+    "type": "text"
+  },
+  "alongMotorway": "Le long de l'autoroute",
+  "@alongMotorway": {
+    "type": "text"
+  },
+  "alreadyHaveAnAccount": "Vous avez déjà un compte ? ",
+  "@alreadyHaveAnAccount": {
+    "type": "text"
+  },
+  "appAuthentication": "Application d'authentification",
+  "@appAuthentication": {
+    "type": "text"
+  },
+  "applePay": "Apple Pay",
+  "@applePay": {
+    "type": "text"
+  },
+  "appVersion": "Version de l'application",
+  "@appVersion": {
+    "type": "text"
+  },
+  "areYouSureYouWantToBlockCardFrom": "Etes-vous sûr de vouloir bloquer la carte de",
+  "@areYouSureYouWantToBlockCardFrom": {
+    "type": "text"
+  },
+  "areYouSureYouWantToDisableTwoFactorAuthentication": "Êtes-vous sûr de vouloir désactiver la vérification en deux étapes ? ",
+  "@areYouSureYouWantToDisableTwoFactorAuthentication": {
+    "type": "text"
+  },
+  "areYouSureYouWantToRemoveCard": "Êtes-vous sûr de vouloir supprimer la carte",
+  "@areYouSureYouWantToRemoveCard": {
+    "type": "text"
+  },
+  "areYouSureYouWantToRemoveYourAccount": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+  "@areYouSureYouWantToRemoveYourAccount": {
+    "type": "text"
+  },
+  "authenticationCodesWillBeSentToIt": "Les codes de vérification seront envoyés à ce numéro. ",
+  "@authenticationCodesWillBeSentToIt": {
+    "type": "text"
+  },
+  "authy": "Authy",
+  "@authy": {
+    "type": "text"
+  },
+  "automaticallyDetectMyConnection": "Détecter automatiquement ma connexion",
+  "@automaticallyDetectMyConnection": {
+    "type": "text"
+  },
+  "available": "Disponible",
+  "@available": {
+    "type": "text"
+  },
+  "availableChargers": "Chargeurs disponibles",
+  "@availableChargers": {
+    "type": "text"
+  },
+  "backupVerificationCode": "Code de récupération",
+  "@backupVerificationCode": {
+    "type": "text"
+  },
+  "baseTariff": "Tarif de base",
+  "@baseTariff": {
+    "type": "text"
+  },
+  "bikeSharing": "vélos partagés",
+  "@bikeSharing": {
+    "type": "text"
+  },
+  "billingAddress": "Adresse de facturation",
+  "@billingAddress": {
+    "type": "text"
+  },
+  "billingAddressSuccessfullyUpdated": "Adresse de facturation mise à jour avec succès",
+  "@billingAddressSuccessfullyUpdated": {
+    "type": "text"
+  },
+  "billingDetails": "Détails de facturation",
+  "@billingDetails": {
+    "type": "text"
+  },
+  "billingPlan": "Plan de facturation",
+  "@billingPlan": {
+    "type": "text"
+  },
+  "blockCard": "Bloquer la carte",
+  "@blockCard": {
+    "type": "text"
+  },
+  "brandnameChargers": "Chargeurs --brandname--",
+  "@brandnameChargers": {
+    "type": "text",
+    "description": "Shows on map filter screen - e.g. E-Flux Chargers"
+  },
+  "busStop": "Arrêt de bus",
+  "@busStop": {
+    "type": "text"
+  },
+  "byAddingAPaymentMethod": "En ajoutant une méthode de paiement, vous pourrez démarrer une session de recharge sur n'importe quelle station --brandname--.",
+  "@byAddingAPaymentMethod": {
+    "type": "text"
+  },
+  "byAllowingLocationServices": "En autorisant les services de localisation, nous serons en mesure de déterminer les bornes de recharge les plus proches de chez vous.",
+  "@byAllowingLocationServices": {
+    "type": "text"
+  },
+  "cafe": "Café",
+  "@cafe": {
+    "type": "text"
+  },
+  "cameraPermissionDenied": "Permission d’accès à la caméra refusée",
+  "@cameraPermissionDenied": {
+    "type": "text"
+  },
+  "cameraPermissionMessage": "Pour scanner un QR code, l’accès à la caméra est nécessaire. Merci d’autoriser la caméra dans les paramètres de votre appareil.",
+  "@cameraPermissionMessage": {
+    "type": "text"
+  },
+  "cameraPermissionRequired": "Autorisation caméra requise",
+  "@cameraPermissionRequired": {
+    "type": "text"
+  },
+  "cancel": "Annuler",
+  "@cancel": {
+    "type": "text"
+  },
+  "cancelSession": "Annuler la recharge",
+  "@cancelSession": {
+    "type": "text"
+  },
+  "cancelSubscription": "Résilier l’abonnement",
+  "@cancelSubscription": {
+    "type": "text"
+  },
+  "cannotAddAPaymentMethod": "Impossible d'ajouter un mode de paiement à ce compte.",
+  "@cannotAddAPaymentMethod": {
+    "type": "text"
+  },
+  "card": "Carte",
+  "@card": {
+    "type": "text",
+    "description": "Postfix for E-Flux Card / Elexon Card etc."
+  },
+  "cardDetailsUnavailable": "Détails de la carte indisponibles",
+  "@cardDetailsUnavailable": {
+    "type": "text"
+  },
+  "cardFailedToSave": "Échec de l'enregistrement de la carte. Veuillez réessayer.",
+  "@cardFailedToSave": {
+    "type": "text"
+  },
+  "cardNumber": "Numéro de carte",
+  "@cardNumber": {
+    "type": "text"
+  },
+  "cardRemoved": "Carte supprimée",
+  "@cardRemoved": {
+    "type": "text"
+  },
+  "cardRfid": "Carte (RFID)",
+  "@cardRfid": {
+    "type": "text"
+  },
+  "cardSaved": "Carte enregistrée",
+  "@cardSaved": {
+    "type": "text"
+  },
+  "cardVerificationRequired": "Vérification de la carte requise",
+  "@cardVerificationRequired": {
+    "type": "text"
+  },
+  "carpoolParking": "Stationnement pour covoiturage",
+  "@carpoolParking": {
+    "type": "text"
+  },
+  "carScreenAll": "All",
+  "@carScreenAll": {
+    "type": "text",
+    "description": "Generic 'All' label used for unfiltered state in car screen filters (e.g. all power tiers, all connector types)"
+  },
+  "carScreenAvailabilityCount": "{available}/{total} available",
+  "@carScreenAvailabilityCount": {
+    "type": "text",
+    "description": "Availability count text for car screen station display",
+    "placeholders": {
+      "available": {
+        "type": "int",
+        "example": "3"
+      },
+      "total": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "carScreenChargingPower": "Charging Power",
+  "@carScreenChargingPower": {
+    "type": "text",
+    "description": "Label for the charging power filter group in CarPlay/Android Auto"
+  },
+  "carScreenCountSelected": "{count} selected",
+  "@carScreenCountSelected": {
+    "type": "text",
+    "description": "Shown when multiple options are selected in a car screen filter group",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "carScreenFastChargersAhead": "Chargeurs rapides à venir",
+  "@carScreenFastChargersAhead": {
+    "type": "text",
+    "description": "CarPlay/Android Auto template title when highway mode is active"
+  },
+  "carScreenFilterOff": "Off",
+  "@carScreenFilterOff": {
+    "type": "text",
+    "description": "CarPlay/Android Auto filter status label when filter is disabled"
+  },
+  "carScreenFilterOn": "On",
+  "@carScreenFilterOn": {
+    "type": "text",
+    "description": "CarPlay/Android Auto filter status label when filter is enabled"
+  },
+  "carScreenFiltersCount": "Filters ({count})",
+  "@carScreenFiltersCount": {
+    "type": "text",
+    "description": "CarPlay/Android Auto filter button label showing active filter count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "carScreenHighway": "Highway mode",
+  "@carScreenHighway": {
+    "type": "text",
+    "description": "CarPlay filter list row title for the highway mode setting"
+  },
+  "carScreenHighwayAuto": "Highway Auto",
+  "@carScreenHighwayAuto": {
+    "type": "text",
+    "description": "CarPlay/Android Auto highway mode toggle button label when auto-switching is enabled"
+  },
+  "carScreenHighwayOff": "Highway Off",
+  "@carScreenHighwayOff": {
+    "type": "text",
+    "description": "CarPlay/Android Auto highway mode toggle button label when auto-switching is disabled"
+  },
+  "carScreenHighwayOn": "Highway mode: On",
+  "@carScreenHighwayOn": {
+    "type": "text",
+    "description": "CarPlay/Android Auto highway mode button label when highway mode is always on"
+  },
+  "carScreenLoginToSaveFavourites": "Log in to save your favourite stations",
+  "@carScreenLoginToSaveFavourites": {
+    "type": "text",
+    "description": "Message shown on the favourites tab in CarPlay/Android Auto when the user is not logged in"
+  },
+  "carScreenNavigate": "Navigate",
+  "@carScreenNavigate": {
+    "type": "text",
+    "description": "CarPlay/Android Auto button to start navigation to a charging station"
+  },
+  "carScreenNavigateOnPhone": "Navigate on Phone",
+  "@carScreenNavigateOnPhone": {
+    "type": "text",
+    "description": "Android Auto button to open navigation on the phone instead"
+  },
+  "carScreenNavigationError": "Navigation Error",
+  "@carScreenNavigationError": {
+    "type": "text",
+    "description": "Android Auto error screen title for navigation failures"
+  },
+  "carScreenNavigationNotAvailable": "Navigation not available",
+  "@carScreenNavigationNotAvailable": {
+    "type": "text",
+    "description": "Android Auto error message when navigation cannot be started"
+  },
+  "carScreenNoFavourites": "No favourites yet",
+  "@carScreenNoFavourites": {
+    "type": "text",
+    "description": "Message shown when the user has no favourite stations in CarPlay/Android Auto"
+  },
+  "carScreenNoFiltersAvailable": "No filters available",
+  "@carScreenNoFiltersAvailable": {
+    "type": "text",
+    "description": "Android Auto message shown when no filter definitions have been received"
+  },
+  "carScreenPowerFast": "Fast (23+ kW)",
+  "@carScreenPowerFast": {
+    "type": "text",
+    "description": "Label for fast charging power filter (23+ kW) in car screen"
+  },
+  "carScreenPowerRapid": "Rapid (100+ kW)",
+  "@carScreenPowerRapid": {
+    "type": "text",
+    "description": "Label for rapid charging power filter (100+ kW) in car screen"
+  },
+  "carScreenPowerSlow": "Slow (3+ kW)",
+  "@carScreenPowerSlow": {
+    "type": "text",
+    "description": "Label for slow charging power filter (3+ kW) in car screen"
+  },
+  "carScreenPowerUltra": "Ultra (200+ kW)",
+  "@carScreenPowerUltra": {
+    "type": "text",
+    "description": "Label for ultra charging power filter (200+ kW) in car screen"
+  },
+  "carScreenPricePerKwh": "{price}/kWh",
+  "@carScreenPricePerKwh": {
+    "type": "text",
+    "description": "Price per kWh text for car screen station display",
+    "placeholders": {
+      "price": {
+        "type": "String",
+        "example": "€0.45"
+      }
+    }
+  },
+  "carScreenSave": "🤍 Save",
+  "@carScreenSave": {
+    "type": "text",
+    "description": "Button label to save a station as a favourite in CarPlay/Android Auto"
+  },
+  "carScreenSaved": "❤️ Saved",
+  "@carScreenSaved": {
+    "type": "text",
+    "description": "Button label shown when a station is already saved as a favourite in CarPlay/Android Auto"
+  },
+  "carScreenShowDetails": "Show details",
+  "@carScreenShowDetails": {
+    "type": "text",
+    "description": "CarPlay/Android Auto button to show station detail screen"
+  },
+  "carScreenTabFavourites": "Favourites",
+  "@carScreenTabFavourites": {
+    "type": "text",
+    "description": "Tab label for the favourites tab in CarPlay and Android Auto"
+  },
+  "carScreenTabFilters": "Filters",
+  "@carScreenTabFilters": {
+    "type": "text",
+    "description": "Tab label for the filters tab in CarPlay and Android Auto"
+  },
+  "carScreenTabMap": "Map",
+  "@carScreenTabMap": {
+    "type": "text",
+    "description": "Tab label for the map/stations tab in CarPlay and Android Auto"
+  },
+  "chargeCard": "Carte de crédit",
+  "@chargeCard": {
+    "type": "text"
+  },
+  "chargeCardInvoices": "Factures de carte de recharge",
+  "@chargeCardInvoices": {
+    "type": "text"
+  },
+  "charged": "Charged",
+  "@charged": {
+    "type": "text"
+  },
+  "chargeNow": "Charge Now",
+  "@chargeNow": {
+    "type": "text"
+  },
+  "chargers": "Chargeurs",
+  "@chargers": {
+    "type": "text"
+  },
+  "charging": "En charge",
+  "@charging": {
+    "type": "text"
+  },
+  "chargingCardOrTag": "Carte de recharge",
+  "@chargingCardOrTag": {
+    "type": "text"
+  },
+  "chargingInProgress": "Recharge en cours",
+  "@chargingInProgress": {
+    "type": "text"
+  },
+  "chargingPowerkW": "Puissance de charge [kW]",
+  "@chargingPowerkW": {
+    "type": "text"
+  },
+  "chargingSessionChargingSubtitle": "Notification lorsque votre véhicule commence à charger.",
+  "@chargingSessionChargingSubtitle": {
+    "type": "text"
+  },
+  "chargingSessionChargingTitle": "Recharge démarrée",
+  "@chargingSessionChargingTitle": {
+    "type": "text"
+  },
+  "chargingSessionEndedSubtitle": "Notification lors de l'arrêt de votre session de recharge.",
+  "@chargingSessionEndedSubtitle": {
+    "type": "text"
+  },
+  "chargingSessionEndedTitle": "Session de recharge terminée",
+  "@chargingSessionEndedTitle": {
+    "type": "text"
+  },
+  "chargingSessionStartedSubtitle": "Notification lors du démarrage de votre session de recharge.",
+  "@chargingSessionStartedSubtitle": {
+    "type": "text"
+  },
+  "chargingSessionStateOver80Subtitle": "Notification lorsque votre véhicule est chargé à 80%.",
+  "@chargingSessionStateOver80Subtitle": {
+    "type": "text"
+  },
+  "chargingSessionStateOver80Title": "La recharge a atteint 80%",
+  "@chargingSessionStateOver80Title": {
+    "type": "text"
+  },
+  "chargingSessionSuspendedEvseSubtitle": "Notification lorsque la borne termine la recharge.",
+  "@chargingSessionSuspendedEvseSubtitle": {
+    "type": "text"
+  },
+  "chargingSessionSuspendedEvseTitle": "Recharge terminée par la borne ",
+  "@chargingSessionSuspendedEvseTitle": {
+    "type": "text"
+  },
+  "chargingSessionSuspendedEvSubtitle": "Notification lorsque votre véhicule a fini de charger.",
+  "@chargingSessionSuspendedEvSubtitle": {
+    "type": "text"
+  },
+  "chargingSessionSuspendedEvTitle": "Recharge terminée",
+  "@chargingSessionSuspendedEvTitle": {
+    "type": "text"
+  },
+  "chargingStartedTitle": "Session de recharge commencée",
+  "@chargingStartedTitle": {
+    "type": "text"
+  },
+  "chooseFromAListOfNearbyConnectors": "Choisissez parmi une liste de connecteurs à proximité",
+  "@chooseFromAListOfNearbyConnectors": {
+    "type": "text"
+  },
+  "chooseRoutingApp": "Choisir une application de routage",
+  "@chooseRoutingApp": {
+    "type": "text"
+  },
+  "cityIsRequired": "La ville est requise",
+  "@cityIsRequired": {
+    "type": "text"
+  },
+  "cityTown": "Ville",
+  "@cityTown": {
+    "type": "text"
+  },
+  "clearFilters": "Effacer les filtres",
+  "@clearFilters": {
+    "type": "text"
+  },
+  "clickButton3dSecure": "Après avoir cliqué sur le bouton, vous serez redirigé vers votre fournisseur de paiement pour l'authentification 3D Secure.",
+  "@clickButton3dSecure": {
+    "type": "text"
+  },
+  "clickTheButtonBelow": "Cliquez sur le bouton ci-dessous",
+  "@clickTheButtonBelow": {
+    "type": "text"
+  },
+  "close": "Fermer",
+  "@close": {
+    "type": "text"
+  },
+  "codeEnteredIsIncorrect": "Le code saisi est incorrect. Veuillez réessayer ou demander un nouveau code.",
+  "@codeEnteredIsIncorrect": {
+    "type": "text"
+  },
+  "codeResent": "Code renvoyé !",
+  "@codeResent": {
+    "type": "text"
+  },
+  "compassDirectionEast": "E",
+  "@compassDirectionEast": {
+    "type": "text",
+    "description": "Compass direction abbreviation for East - used in highway mode to show travel direction"
+  },
+  "compassDirectionNorth": "N",
+  "@compassDirectionNorth": {
+    "type": "text",
+    "description": "Compass direction abbreviation for North - used in highway mode to show travel direction"
+  },
+  "compassDirectionNorthEast": "NE",
+  "@compassDirectionNorthEast": {
+    "type": "text",
+    "description": "Compass direction abbreviation for North-East - used in highway mode to show travel direction"
+  },
+  "compassDirectionNorthWest": "NW",
+  "@compassDirectionNorthWest": {
+    "type": "text",
+    "description": "Compass direction abbreviation for North-West - used in highway mode to show travel direction"
+  },
+  "compassDirectionSouth": "S",
+  "@compassDirectionSouth": {
+    "type": "text",
+    "description": "Compass direction abbreviation for South - used in highway mode to show travel direction"
+  },
+  "compassDirectionSouthEast": "SE",
+  "@compassDirectionSouthEast": {
+    "type": "text",
+    "description": "Compass direction abbreviation for South-East - used in highway mode to show travel direction"
+  },
+  "compassDirectionSouthWest": "SW",
+  "@compassDirectionSouthWest": {
+    "type": "text",
+    "description": "Compass direction abbreviation for South-West - used in highway mode to show travel direction"
+  },
+  "compassDirectionWest": "W",
+  "@compassDirectionWest": {
+    "type": "text",
+    "description": "Compass direction abbreviation for West - used in highway mode to show travel direction"
+  },
+  "confirmYourApprovalByCheckingTheBox": "Cochez cette case pour approuver.",
+  "@confirmYourApprovalByCheckingTheBox": {
+    "type": "text"
+  },
+  "connectorType": "Type de connecteur",
+  "@connectorType": {
+    "type": "text"
+  },
+  "contactSupportAt": "Contactez le support à",
+  "@contactSupportAt": {
+    "type": "text",
+    "description": "Prefix to email address in 'Contact support at support@road.io to start a manual verification process'"
+  },
+  "contactUs": "Contactez-nous",
+  "@contactUs": {
+    "type": "text"
+  },
+  "continueStr": "Continuer",
+  "@continueStr": {
+    "type": "text"
+  },
+  "continueToAuthentication": "Continuer vers l'authentification",
+  "@continueToAuthentication": {
+    "type": "text"
+  },
+  "copyCodes": "Copier les codes",
+  "@copyCodes": {
+    "type": "text"
+  },
+  "costTooltipText": "Note that the cost displayed here is approximate and does not include all additional fees. Full costs are displayed on your invoice.",
+  "@costTooltipText": {
+    "type": "text",
+    "description": "Tooltip text explaining that cost is approximate"
+  },
+  "couldNotLoadNetworks": "Couldn't load networks",
+  "@couldNotLoadNetworks": {
+    "type": "text"
+  },
+  "country": "Pays",
+  "@country": {
+    "type": "text"
+  },
+  "countryIsRequired": "Le pays est requis",
+  "@countryIsRequired": {
+    "type": "text"
+  },
+  "createAccount": "Créer un compte",
+  "@createAccount": {
+    "type": "text"
+  },
+  "createYourFreeAccount": "Créer votre compte gratuit",
+  "@createYourFreeAccount": {
+    "type": "text"
+  },
+  "creditOrDebitCard": "Carte de crédit ou de débit",
+  "@creditOrDebitCard": {
+    "type": "text"
+  },
+  "currentPassword": "Mot de passe actuel",
+  "@currentPassword": {
+    "type": "text"
+  },
+  "dashboard": "Tableau de bord",
+  "@dashboard": {
+    "type": "text"
+  },
+  "date": "Date",
+  "@date": {
+    "type": "text"
+  },
+  "dCChargers": "Chargeurs rapides disponibles",
+  "@dCChargers": {
+    "type": "text"
+  },
+  "didntReceiveTheCode": "Vous n’avez pas reçu le code ? Vous recevrez le code dans un instant ou ",
+  "@didntReceiveTheCode": {
+    "type": "text"
+  },
+  "didntReceiveTheEmail": "Vous n’avez pas reçu l’e-mail ? Vérifiez vos courriers indésirables ou ",
+  "@didntReceiveTheEmail": {
+    "type": "text"
+  },
+  "directPayments": "Paiements directs",
+  "@directPayments": {
+    "type": "text"
+  },
+  "disableTwoFactorAuthentication": "Désactiver la double authentification",
+  "@disableTwoFactorAuthentication": {
+    "type": "text"
+  },
+  "dontHaveAnAccount": "Vous n'avez pas de compte ?",
+  "@dontHaveAnAccount": {
+    "type": "text"
+  },
+  "dontHaveYourBackupCodes": "Vous avez perdu vos codes de récupération ? ",
+  "@dontHaveYourBackupCodes": {
+    "type": "text"
+  },
+  "downloadCodes": "Télécharger les codes ",
+  "@downloadCodes": {
+    "type": "text"
+  },
+  "downloadInvoice": "Télécharger la facture",
+  "@downloadInvoice": {
+    "type": "text"
+  },
+  "doYouWantToChangeTheTwoFactorAuthenticationMethod": "Voulez-vous modifier votre mode d’authentification en deux étapes ?",
+  "@doYouWantToChangeTheTwoFactorAuthenticationMethod": {
+    "type": "text"
+  },
+  "duration": "Durée",
+  "@duration": {
+    "type": "text"
+  },
+  "dynamicTariff": "Tarif dynamique",
+  "@dynamicTariff": {
+    "type": "text"
+  },
+  "dynamicTariffNote": "Le tarif dynamique est ajusté automatiquement en fonction du prix du marché de l'énergie (intervalle d'une heure).",
+  "@dynamicTariffNote": {
+    "type": "text"
+  },
+  "editPaymentMethod": "Modifier le mode de paiement",
+  "@editPaymentMethod": {
+    "type": "text"
+  },
+  "eMail": "E-mail",
+  "@eMail": {
+    "type": "text"
+  },
+  "emailAddressSuccessfullyVerified": "Adresse e-mail vérifiée avec succès !",
+  "@emailAddressSuccessfullyVerified": {
+    "type": "text"
+  },
+  "emailRequired": "L'email est requis",
+  "@emailRequired": {
+    "type": "text"
+  },
+  "enableLocationServices": "Activer les services de localisation",
+  "@enableLocationServices": {
+    "type": "text"
+  },
+  "enableNotifications": "Autoriser les notifications",
+  "@enableNotifications": {
+    "type": "text"
+  },
+  "enableTwoFactorAuthentication": "Autoriser la double authentification",
+  "@enableTwoFactorAuthentication": {
+    "type": "text"
+  },
+  "endSession": "Fin de session",
+  "@endSession": {
+    "type": "text"
+  },
+  "endTime": "Heure de fin",
+  "@endTime": {
+    "type": "text"
+  },
+  "enterCode": "Saisissez le code",
+  "@enterCode": {
+    "type": "text"
+  },
+  "enterThe6DigitCodeBelow": "Saisissez le code à 6 chiffres ci-dessous.",
+  "@enterThe6DigitCodeBelow": {
+    "type": "text"
+  },
+  "enterTheSecurityCodeGenerated": "Saisissez le code de sécurité généré par l'application.",
+  "@enterTheSecurityCodeGenerated": {
+    "type": "text"
+  },
+  "error": "Erreur",
+  "@error": {
+    "type": "text"
+  },
+  "errorAccessingCamera": "Erreur d’accès à la caméra",
+  "@errorAccessingCamera": {
+    "type": "text"
+  },
+  "evseId": "ID EVSE",
+  "@evseId": {
+    "type": "text"
+  },
+  "eVWallet": "Portefeuille EV",
+  "@eVWallet": {
+    "type": "text"
+  },
+  "example": "Exemple:",
+  "@example": {
+    "type": "text"
+  },
+  "excludeNetworks": "Masquer les réseaux sélectionnés",
+  "@excludeNetworks": {
+    "type": "text"
+  },
+  "exclVat": "(HT)",
+  "@exclVat": {
+    "type": "text"
+  },
+  "exploreMap": "Voir la carte",
+  "@exploreMap": {
+    "type": "text"
+  },
+  "exploreOrSearchForALocation": "Explorer ou rechercher un emplacement →",
+  "@exploreOrSearchForALocation": {
+    "type": "text"
+  },
+  "exploreStations": "Bornes de recharge",
+  "@exploreStations": {
+    "type": "text"
+  },
+  "fastStationsWithPower": "Fast stations (>50 kW)",
+  "@fastStationsWithPower": {
+    "type": "text",
+    "description": "Title for highway mode screen when driving above 50km/h - shows fast charging stations"
+  },
+  "favouriteStations": "Stations favorites",
+  "@favouriteStations": {
+    "type": "text"
+  },
+  "filterByMonth": "Filtrer par mois",
+  "@filterByMonth": {
+    "type": "text"
+  },
+  "filterByYear": "Filtrer par année",
+  "@filterByYear": {
+    "type": "text"
+  },
+  "filters": "Filtres",
+  "@filters": {
+    "type": "text"
+  },
+  "findAllAvailableChargeStationsNearby": "Trouvez toutes les bornes de recharge disponibles à proximité",
+  "@findAllAvailableChargeStationsNearby": {
+    "type": "text"
+  },
+  "findEVChargingLocations": "Explorer les stations",
+  "@findEVChargingLocations": {
+    "type": "text"
+  },
+  "findMoreStationsNearby": "Trouver plus de stations à proximité →",
+  "@findMoreStationsNearby": {
+    "type": "text"
+  },
+  "findNearbyEvStations": "Trouver des bornes de recharge à proximité",
+  "@findNearbyEvStations": {
+    "type": "text"
+  },
+  "findStationsNearby": "Find stations nearby →",
+  "@findStationsNearby": {
+    "type": "text",
+    "description": "Link text on low speed highway mode screen to navigate to map"
+  },
+  "findTheStickerEnterTheDigits": "Repérez l’autocollant sur la borne de recharge puis entrez le code chiffré.",
+  "@findTheStickerEnterTheDigits": {
+    "type": "text"
+  },
+  "firstName": "Prénom",
+  "@firstName": {
+    "type": "text"
+  },
+  "firstNameRequired": "Le prénom est requis",
+  "@firstNameRequired": {
+    "type": "text"
+  },
+  "forgotPassword": "Mot de passe oublié?",
+  "@forgotPassword": {
+    "type": "text"
+  },
+  "fuelStation": "Station essence",
+  "@fuelStation": {
+    "type": "text"
+  },
+  "getDirections": "Obtenir l'itinéraire",
+  "@getDirections": {
+    "type": "text"
+  },
+  "getStarted": "Commencer",
+  "@getStarted": {
+    "type": "text"
+  },
+  "googleAuthenticator": "Google Authenticator",
+  "@googleAuthenticator": {
+    "type": "text"
+  },
+  "googlePay": "Google Pay",
+  "@googlePay": {
+    "type": "text"
+  },
+  "grantLocationPermissionToUseThisFeature": "Autoriser la localisation pour utiliser cette fonctionnalité",
+  "@grantLocationPermissionToUseThisFeature": {
+    "type": "text"
+  },
+  "hAndMin": "{hours}h {minutes}min",
+  "@hAndMin": {
+    "type": "text",
+    "description": "Hours and minutes",
+    "placeholders": {
+      "hours": {
+        "type": "num",
+        "format": "decimalPattern"
+      },
+      "minutes": {
+        "type": "num"
+      }
+    }
+  },
+  "helpAndSupport": "Aide et Support",
+  "@helpAndSupport": {
+    "type": "text"
+  },
+  "highwayMode": "Highway Mode",
+  "@highwayMode": {
+    "type": "text"
+  },
+  "highwayModeAvailableWhileDriving": "Highway mode is available while driving outside of city speed limits.",
+  "@highwayModeAvailableWhileDriving": {
+    "type": "text"
+  },
+  "hotel": "Hôtel",
+  "@hotel": {
+    "type": "text"
+  },
+  "hour": "Heure",
+  "@hour": {
+    "type": "text"
+  },
+  "hourIdleFee": "Frais d'inactivité par heure",
+  "@hourIdleFee": {
+    "type": "text"
+  },
+  "hourlyPrices": "Tarifs horaires",
+  "@hourlyPrices": {
+    "type": "text"
+  },
+  "houseNumberIsRequired": "Le numéro de rue est requis",
+  "@houseNumberIsRequired": {
+    "type": "text"
+  },
+  "houseNumberShort": "N°",
+  "@houseNumberShort": {
+    "type": "text",
+    "description": "Shortest possible abbreviation for 'House Number'."
+  },
+  "iAcceptThe": "J'accepte les",
+  "@iAcceptThe": {
+    "type": "text",
+    "description": "Precedes the hyperlink 'terms of service'"
+  },
+  "identifier": "Identifiant",
+  "@identifier": {
+    "type": "text"
+  },
+  "imAllPluggedIn": "Je suis branché !",
+  "@imAllPluggedIn": {
+    "type": "text"
+  },
+  "imAllPluggedInToTheEvStation": "Je suis connecté à la borne de recharge",
+  "@imAllPluggedInToTheEvStation": {
+    "type": "text"
+  },
+  "inaccurateTariffWarning": "Les tarifs affichés ici ont été envoyés à E-Flux par l'opérateur en roaming. La précision peut varier selon l'opérateur.",
+  "@inaccurateTariffWarning": {
+    "type": "text"
+  },
+  "inactive": "Inactif",
+  "@inactive": {
+    "type": "text"
+  },
+  "inclVat": "(TTC)",
+  "@inclVat": {
+    "type": "text"
+  },
+  "initialisingLocationService": "Trouver des stations de recharge pour véhicules électriques",
+  "@initialisingLocationService": {
+    "type": "text"
+  },
+  "input": "saisir",
+  "@input": {
+    "type": "text",
+    "description": "Used in station ID input example, eg: NL*EFL*EV1234567 -> input 1234567"
+  },
+  "inputTheStationIdFromTheSticker": "Saisir l'identifiant de la borne figurant sur l'autocollant",
+  "@inputTheStationIdFromTheSticker": {
+    "type": "text"
+  },
+  "invalidPhoneNumber": "Numéro de téléphone invalide",
+  "@invalidPhoneNumber": {
+    "type": "text"
+  },
+  "invoiceDetails": "Détails de la facture",
+  "@invoiceDetails": {
+    "type": "text"
+  },
+  "invoices": "Factures",
+  "@invoices": {
+    "type": "text"
+  },
+  "iSavedMyBackupCodes": "J’ai enregistré mes codes de récupération.",
+  "@iSavedMyBackupCodes": {
+    "type": "text"
+  },
+  "isThisAuthMethodNotWorking": "Cette méthode d’authentification ne fonctionne pas ?",
+  "@isThisAuthMethodNotWorking": {
+    "type": "text"
+  },
+  "isThisYou": "Est-ce vous ?",
+  "@isThisYou": {
+    "type": "text"
+  },
+  "iUnderstandThat": "Je comprends que --brandname-- traitera mes données personnelles conformément aux",
+  "@iUnderstandThat": {
+    "type": "text",
+    "description": "Precedes the hyperlink 'privacy statement'. --brandname-- is set to the name of the app"
+  },
+  "iWantToReceive": "Je souhaite recevoir des newsletters concernant ma carte de paiement et/ou mon abonnement et j'accepte par la présente le traitement de mes données personnelles à cet effet, comme décrit dans la",
+  "@iWantToReceive": {
+    "type": "text",
+    "description": "Comes aater the hyperlink to 'privacy statement'"
+  },
+  "lastName": "Nom de famille",
+  "@lastName": {
+    "type": "text"
+  },
+  "lastNameRequired": "Le nom de famille est requis",
+  "@lastNameRequired": {
+    "type": "text"
+  },
+  "later": "Plus tard",
+  "@later": {
+    "type": "text"
+  },
+  "lessThanAMinute": "moins d'une minute",
+  "@lessThanAMinute": {
+    "type": "text"
+  },
+  "letsGetYouStarted": "Commençons avec l'application de recharge la plus simple et la plus rapide.",
+  "@letsGetYouStarted": {
+    "type": "text"
+  },
+  "locationPermissionDeniedForThisAppPleaseEnableItInYourDeviceSettings": "Autorisation de localisation refusée pour cette application. Veuillez l'activer dans les paramètres de votre appareil.",
+  "@locationPermissionDeniedForThisAppPleaseEnableItInYourDeviceSettings": {
+    "type": "text"
+  },
+  "locationPermissionGranted": "Autorisation de localisation accordée",
+  "@locationPermissionGranted": {
+    "type": "text"
+  },
+  "locationPermissionsHaveBeenDenied": "Les autorisations de localisation ont été refusées pour cette application. Les performances de cette application seront gravement altérées sans cette autorisation. Veuillez ouvrir les paramètres et autoriser les services de localisation.",
+  "@locationPermissionsHaveBeenDenied": {
+    "type": "text"
+  },
+  "locationServicesAreDisabled": "Les services de localisation sont désactivés. Veuillez ouvrir les paramètres et activer les services de localisation.",
+  "@locationServicesAreDisabled": {
+    "type": "text"
+  },
+  "locationServicesHaveBeenDisabledForThisApp": "Les services de localisation ont été désactivés pour cette application. Veuillez les activer dans les paramètres de votre appareil.",
+  "@locationServicesHaveBeenDisabledForThisApp": {
+    "type": "text"
+  },
+  "login": "Se connecter",
+  "@login": {
+    "type": "text"
+  },
+  "logout": "Se déconnecter",
+  "@logout": {
+    "type": "text"
+  },
+  "lookingForAppleOrGooglePay": "Vous cherchez Apple Pay ou Google Pay ?",
+  "@lookingForAppleOrGooglePay": {
+    "type": "text"
+  },
+  "mall": "Centre commercial",
+  "@mall": {
+    "type": "text"
+  },
+  "manageYourNotifications": "Gérez les notifications pour vos sessions de recharge.",
+  "@manageYourNotifications": {
+    "type": "text"
+  },
+  "manageYourPersonalContactInformation": "Gérez vos informations personnelles",
+  "@manageYourPersonalContactInformation": {
+    "type": "text"
+  },
+  "manualEVSEIDInput": "Saisie manuelle de l'ID EVSE →",
+  "@manualEVSEIDInput": {
+    "type": "text"
+  },
+  "manuallyInputStationId": "Saisir manuellement l'identifiant de la borne",
+  "@manuallyInputStationId": {
+    "type": "text"
+  },
+  "manualStationInput": "Saisie manuelle de la station",
+  "@manualStationInput": {
+    "type": "text"
+  },
+  "markStationsAsFavouriteByPressingTheHeartIcon": "Pour ajouter une station à vos favoris, cliquez sur l’icône cœur.",
+  "@markStationsAsFavouriteByPressingTheHeartIcon": {
+    "type": "text"
+  },
+  "metroStation": "Gare de métro",
+  "@metroStation": {
+    "type": "text"
+  },
+  "minWaitBeforeIdleFee": "min d'attente avant les frais d'inactivité",
+  "@minWaitBeforeIdleFee": {
+    "type": "text"
+  },
+  "museum": "Musée",
+  "@museum": {
+    "type": "text"
+  },
+  "myCurrentPosition": "Ma position actuelle",
+  "@myCurrentPosition": {
+    "type": "text"
+  },
+  "name": "Nom",
+  "@name": {
+    "type": "text"
+  },
+  "nameOnCard": "Nom sur la carte",
+  "@nameOnCard": {
+    "type": "text"
+  },
+  "nature": "Nature",
+  "@nature": {
+    "type": "text"
+  },
+  "nDays": "{count, plural, =0{0 jours} =1{1 jour} other{{count} jours}}",
+  "@nDays": {
+    "type": "text",
+    "description": "Count of days",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "nearbyStations": "Station à proximité",
+  "@nearbyStations": {
+    "type": "text"
+  },
+  "nearestStations": "Nearest Stations",
+  "@nearestStations": {
+    "type": "text"
+  },
+  "newPassword": "Nouveau mot de passe",
+  "@newPassword": {
+    "type": "text"
+  },
+  "nHours": "{count, plural, =0{0 heures} =1{1 heure} other{{count} heures}}",
+  "@nHours": {
+    "type": "text",
+    "description": "Count of hours",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "nMinutes": "{count, plural, =0{0 minutes} =1{1 minute} other{{count} minutes}}",
+  "@nMinutes": {
+    "type": "text",
+    "description": "Count of minutes",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+  "noCardsAvailable": "Aucune carte disponible",
+  "@noCardsAvailable": {
+    "type": "text"
+  },
+  "noChargeStationsFound": "Aucune borne de recharge trouvée",
+  "@noChargeStationsFound": {
+    "type": "text"
+  },
+  "noChargingStationsFoundNearby": "No charging stations found nearby",
+  "@noChargingStationsFoundNearby": {
+    "type": "text"
+  },
+  "noConnectorDataAvailable": "Aucune donnée de connecteur disponible",
+  "@noConnectorDataAvailable": {
+    "type": "text"
+  },
+  "noInvoiceDataAvailable": "Aucune donnée de facturation n'est disponible.",
+  "@noInvoiceDataAvailable": {
+    "type": "text"
+  },
+  "noNearbyStations": "No Nearby Stations",
+  "@noNearbyStations": {
+    "type": "text"
+  },
+  "noNetworksFound": "No networks found",
+  "@noNetworksFound": {
+    "type": "text"
+  },
+  "noSelectDifferentStation": "Non, sélectionnez une autre station →",
+  "@noSelectDifferentStation": {
+    "type": "text"
+  },
+  "noSessionDataAvailable": "Aucune donnée de session disponible.",
+  "@noSessionDataAvailable": {
+    "type": "text"
+  },
+  "noStationsFound": "Aucune station trouvée.",
+  "@noStationsFound": {
+    "type": "text"
+  },
+  "noTariffAvailable": "Aucun tarif disponible",
+  "@noTariffAvailable": {
+    "type": "text"
+  },
+  "notAvailable": "Pas disponible",
+  "@notAvailable": {
+    "type": "text"
+  },
+  "noteWeAreStillProcessing": "Remarque : nous traitons toujours la transaction. Une fois cela fait, vous pourrez consulter les détails de votre session.",
+  "@noteWeAreStillProcessing": {
+    "type": "text"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "type": "text"
+  },
+  "ok": "OK",
+  "@ok": {
+    "type": "text"
+  },
+  "onDriveway": "Sur l'allée",
+  "@onDriveway": {
+    "type": "text"
+  },
+  "oneDownloadAnAuthenticatorApp": "1. Téléchargez une application d’authentification",
+  "@oneDownloadAnAuthenticatorApp": {
+    "type": "text"
+  },
+  "onePassword": "1Password",
+  "@onePassword": {
+    "type": "text"
+  },
+  "onlyShow": "Seulement montrer",
+  "@onlyShow": {
+    "type": "text"
+  },
+  "onRoad": "on {road}",
+  "@onRoad": {
+    "type": "text",
+    "placeholders": {
+      "road": {
+        "type": "String",
+        "example": "Main Street"
+      }
+    }
+  },
+  "onStreet": "Dans la rue",
+  "@onStreet": {
+    "type": "text"
+  },
+  "openMailApp": "Accéder à votre messagerie",
+  "@openMailApp": {
+    "type": "text"
+  },
+  "openSettings": "Ouvrir les paramètres",
+  "@openSettings": {
+    "type": "text"
+  },
+  "openThePairingLink": "Ouvrir le lien de connexion",
+  "@openThePairingLink": {
+    "type": "text"
+  },
+  "operatorKey": "Opérateur",
+  "@operatorKey": {
+    "type": "text"
+  },
+  "or": "ou",
+  "@or": {
+    "type": "text"
+  },
+  "parkingGarage": "Parking Garage",
+  "@parkingGarage": {
+    "type": "text"
+  },
+  "parkingLot": "Terrain de stationnement",
+  "@parkingLot": {
+    "type": "text"
+  },
+  "password": "Mot de passe",
+  "@password": {
+    "type": "text"
+  },
+  "passwordAndAuthentication": "Mot de passe et sécurité ",
+  "@passwordAndAuthentication": {
+    "type": "text"
+  },
+  "passwordIsRequired": "Un mot de passe est requis",
+  "@passwordIsRequired": {
+    "type": "text"
+  },
+  "passwordMustContain": "Le mot de passe doit contenir au moins 8 caractères, dont une lettre, un chiffre et un caractère spécial.",
+  "@passwordMustContain": {
+    "type": "text"
+  },
+  "passwordSuccessfullyUpdated": "Mot de passe mis à jour avec succès",
+  "@passwordSuccessfullyUpdated": {
+    "type": "text"
+  },
+  "payment": "Paiement",
+  "@payment": {
+    "type": "text"
+  },
+  "paymentMethod": "Mode de paiement",
+  "@paymentMethod": {
+    "type": "text"
+  },
+  "paymentMethods": "Méthodes de paiement",
+  "@paymentMethods": {
+    "type": "text"
+  },
+  "payments": "Paiements",
+  "@payments": {
+    "type": "text"
+  },
+  "paymentsAndSessions": "Paiements et sessions",
+  "@paymentsAndSessions": {
+    "type": "text"
+  },
+  "payWith": "Payer avec",
+  "@payWith": {
+    "type": "text"
+  },
+  "personalSettings": "Paramètres personnels",
+  "@personalSettings": {
+    "type": "text"
+  },
+  "phoneNumber": "Numéro de téléphone",
+  "@phoneNumber": {
+    "type": "text"
+  },
+  "phoneNumberRequired": "Le numéro de téléphone est requis",
+  "@phoneNumberRequired": {
+    "type": "text"
+  },
+  "phoneNumberSuccessfullyVerified": "Numéro de téléphone vérifié avec succès !",
+  "@phoneNumberSuccessfullyVerified": {
+    "type": "text"
+  },
+  "pleaseAllowLocationUpdates": "Veuillez autoriser les mises à jour de localisation dans les paramètres de l'application.",
+  "@pleaseAllowLocationUpdates": {
+    "type": "text"
+  },
+  "pleaseAllowNotifications": "Veuillez autoriser les notifications dans les paramètres de l'application.",
+  "@pleaseAllowNotifications": {
+    "type": "text"
+  },
+  "pleaseConfirmYourEmailAddressByClicking": "Veuillez confirmer votre adresse e-mail en cliquant sur le lien dans l’e-mail que nous vous avons envoyé.",
+  "@pleaseConfirmYourEmailAddressByClicking": {
+    "type": "text"
+  },
+  "pleaseEnterAValidEmailAddress": "Veuillez saisir une adresse email valide",
+  "@pleaseEnterAValidEmailAddress": {
+    "type": "text"
+  },
+  "pleaseEnterBackupCode": "Entrez un code de récupération non utilisés",
+  "@pleaseEnterBackupCode": {
+    "type": "text"
+  },
+  "pleaseVerifyYourPhoneNumberAndEmail": "Veuillez vérifier votre numéro de téléphone et votre adresse e-mail.",
+  "@pleaseVerifyYourPhoneNumberAndEmail": {
+    "type": "text"
+  },
+  "postCode": "Code postal",
+  "@postCode": {
+    "type": "text"
+  },
+  "postCodeIsInvalid": "Code postal non valide",
+  "@postCodeIsInvalid": {
+    "type": "text"
+  },
+  "postCodeIsRequired": "Le code postal est requis",
+  "@postCodeIsRequired": {
+    "type": "text"
+  },
+  "previousAppAuthenticationMethodWillNotLongerBeAvailable": "L’ancienne méthode d’authentification par application ne sera plus disponible.",
+  "@previousAppAuthenticationMethodWillNotLongerBeAvailable": {
+    "type": "text"
+  },
+  "previousSmsAuthenticationMethodWillNotLongerBeAvailable": "L’ancienne méthode d’authentification par SMS ne sera plus disponible.",
+  "@previousSmsAuthenticationMethodWillNotLongerBeAvailable": {
+    "type": "text"
+  },
+  "price": "Prix",
+  "@price": {
+    "type": "text"
+  },
+  "priceUnknown": "prix inconnu",
+  "@priceUnknown": {
+    "type": "text"
+  },
+  "pricing": "Tarifs",
+  "@pricing": {
+    "type": "text"
+  },
+  "privacyStatement": "Déclaration de confidentialité.",
+  "@privacyStatement": {
+    "type": "text",
+    "description": "Comes after 'I accept that...' Hyperlink to the privacy statement"
+  },
+  "privacyStatementOneLine": "Déclaration de confidentialité",
+  "@privacyStatementOneLine": {
+    "type": "text",
+    "description": "Single entry on account page"
+  },
+  "profile": "Profil",
+  "@profile": {
+    "type": "text",
+    "description": "Header for the profile page"
+  },
+  "profileSuccessfullyUpdated": "Profil mis à jour avec succès",
+  "@profileSuccessfullyUpdated": {
+    "type": "text"
+  },
+  "provideYourBillingDetails": "Veuillez fournir vos informations de facturation",
+  "@provideYourBillingDetails": {
+    "type": "text"
+  },
+  "publicTariff": "Tarif publique",
+  "@publicTariff": {
+    "type": "text"
+  },
+  "putTheseInASafeSpot": "Stockez ces codes en sécurité. En cas de perte de votre appareil sans codes de récupération, vous ne pourrez plus accéder à votre compte.",
+  "@putTheseInASafeSpot": {
+    "type": "text"
+  },
+  "recoveryCodesCanBeUsed": "Les codes de récupération permettent d’accéder à votre compte si vous perdez l’accès à votre appareil et ne pouvez pas utiliser la double authentification.",
+  "@recoveryCodesCanBeUsed": {
+    "type": "text"
+  },
+  "recreationArea": "Zone de loisirs",
+  "@recreationArea": {
+    "type": "text"
+  },
+  "removeAccount": "Supprimer le compte",
+  "@removeAccount": {
+    "type": "text"
+  },
+  "removeCard": "Supprimer la carte",
+  "@removeCard": {
+    "type": "text"
+  },
+  "removedFromYourFavourites": "Station retirée de vos favoris",
+  "@removedFromYourFavourites": {
+    "type": "text"
+  },
+  "removeFromFavourites": "Remove from favourites",
+  "@removeFromFavourites": {
+    "type": "text"
+  },
+  "requestPermission": "Demander l'autorisation",
+  "@requestPermission": {
+    "type": "text"
+  },
+  "resendEmailVerificationLink": "demandez à recevoir à nouveau le lien de vérification",
+  "@resendEmailVerificationLink": {
+    "type": "text"
+  },
+  "resendVerificationCode": "renvoyer le code de vérification",
+  "@resendVerificationCode": {
+    "type": "text",
+    "description": "Postfix highlighted as a link, comes after didntReceiveTheCode."
+  },
+  "restaurant": "Restaurant",
+  "@restaurant": {
+    "type": "text"
+  },
+  "saveCard": "Enregistrer la carte",
+  "@saveCard": {
+    "type": "text"
+  },
+  "saveRecoveryCodes": "Enregistrer les codes de récupération",
+  "@saveRecoveryCodes": {
+    "type": "text"
+  },
+  "scanStationQrCode": "Scanner le QR code de la borne",
+  "@scanStationQrCode": {
+    "type": "text"
+  },
+  "scheduledTariffNote": "Un tarif programmé remplace les prix du tarif de base pour une période spécifique.",
+  "@scheduledTariffNote": {
+    "type": "text"
+  },
+  "search": "Chercher",
+  "@search": {
+    "type": "text"
+  },
+  "searchAddressOrPlaceName": "Rechercher une adresse ou un lieu",
+  "@searchAddressOrPlaceName": {
+    "type": "text"
+  },
+  "searchLocation": "Chercher la station",
+  "@searchLocation": {
+    "type": "text"
+  },
+  "searchNetworks": "Search networks",
+  "@searchNetworks": {
+    "type": "text"
+  },
+  "securityCodesGeneratedByApp": "L’application d’authentification de votre choix générera les codes de sécurité.",
+  "@securityCodesGeneratedByApp": {
+    "type": "text"
+  },
+  "securityCodesSentViaSms": "Les codes de sécurité seront envoyés par SMS sur votre appareil mobile.",
+  "@securityCodesSentViaSms": {
+    "type": "text"
+  },
+  "selectNetworks": "Réseau sélectionné uniquement",
+  "@selectNetworks": {
+    "type": "text"
+  },
+  "selectNetworksToExclude": "Select networks to exclude",
+  "@selectNetworksToExclude": {
+    "type": "text"
+  },
+  "selectNetworksToInclude": "Select networks to include",
+  "@selectNetworksToInclude": {
+    "type": "text"
+  },
+  "selectOption": "Select option",
+  "@selectOption": {
+    "type": "text",
+    "description": "Placeholder text for filter dropdown selectors"
+  },
+  "selectPaymentMethod": "Sélectionnez le mode de paiement",
+  "@selectPaymentMethod": {
+    "type": "text"
+  },
+  "selectStation": "Sélectionner la Station",
+  "@selectStation": {
+    "type": "text"
+  },
+  "selectYourChargeStation": "Sélectionnez votre borne de recharge",
+  "@selectYourChargeStation": {
+    "type": "text"
+  },
+  "sendCode": "Envoyer le code",
+  "@sendCode": {
+    "type": "text"
+  },
+  "sendNotifications": "Envoyer des notifications",
+  "@sendNotifications": {
+    "type": "text"
+  },
+  "session": "Session",
+  "@session": {
+    "type": "text"
+  },
+  "sessionCompleted": "La séance est terminée",
+  "@sessionCompleted": {
+    "type": "text"
+  },
+  "sessionDetails": "Détails de la séance",
+  "@sessionDetails": {
+    "type": "text"
+  },
+  "sessionEnded": "Session terminée",
+  "@sessionEnded": {
+    "type": "text"
+  },
+  "sessions": "Sessions",
+  "@sessions": {
+    "type": "text"
+  },
+  "sessionStarting": "Début de la session",
+  "@sessionStarting": {
+    "type": "text"
+  },
+  "sessionStopping": "Arrêt de la session",
+  "@sessionStopping": {
+    "type": "text"
+  },
+  "signup": "S'inscrire",
+  "@signup": {
+    "type": "text"
+  },
+  "signupForAnAccount": "Créer un compte",
+  "@signupForAnAccount": {
+    "type": "text"
+  },
+  "signupNowToSeeYourChargeCards": "Inscrivez-vous maintenant pour consulter vos cartes de recharge",
+  "@signupNowToSeeYourChargeCards": {
+    "type": "text"
+  },
+  "signupNowToViewChargingSessions": "Inscrivez-vous maintenant pour voir toutes vos sessions de recharge précédentes.",
+  "@signupNowToViewChargingSessions": {
+    "type": "text"
+  },
+  "signupNowToViewInvoices": "Inscrivez-vous maintenant pour voir toutes vos factures de cartes de recharge.",
+  "@signupNowToViewInvoices": {
+    "type": "text"
+  },
+  "skip": "passer",
+  "@skip": {
+    "type": "text"
+  },
+  "skipThisStep": "Ignorer cette étape",
+  "@skipThisStep": {
+    "type": "text"
+  },
+  "smsAuthentication": "Vérification par SMS",
+  "@smsAuthentication": {
+    "type": "text"
+  },
+  "somethingWentWrong": "Quelque chose s'est mal passé :",
+  "@somethingWentWrong": {
+    "type": "text"
+  },
+  "somethingWentWrongPleaseTryAgainLater": "Quelque chose s'est mal passé. Veuillez réessayer plus tard.",
+  "@somethingWentWrongPleaseTryAgainLater": {
+    "type": "text"
+  },
+  "specialCardTariff": "Tarif carte spécial",
+  "@specialCardTariff": {
+    "type": "text"
+  },
+  "sport": "sport",
+  "@sport": {
+    "type": "text"
+  },
+  "startAChargeSession": "Démarrer une session de recharge",
+  "@startAChargeSession": {
+    "type": "text"
+  },
+  "startChargingSession": "Démarrer la session de recharge",
+  "@startChargingSession": {
+    "type": "text"
+  },
+  "startSession": "Démarrer la session",
+  "@startSession": {
+    "type": "text"
+  },
+  "startTime": "Heure de début",
+  "@startTime": {
+    "type": "text"
+  },
+  "startYouFirstEVCharge": "Commencez votre première recharge de VE",
+  "@startYouFirstEVCharge": {
+    "type": "text"
+  },
+  "startYourEVCharge": "Commencez votre recharge",
+  "@startYourEVCharge": {
+    "type": "text"
+  },
+  "stationAddedToYourFavourites": "Station ajoutée à vos favoris",
+  "@stationAddedToYourFavourites": {
+    "type": "text"
+  },
+  "stationDoesntSupportSessions": "Cette borne ne prend pas en charge le démarrage de sessions dans l'application. Utilisez les commandes de la borne pour vous authentifier et démarrer une session de recharge.",
+  "@stationDoesntSupportSessions": {
+    "type": "text"
+  },
+  "stationId": "ID de la borne",
+  "@stationId": {
+    "type": "text"
+  },
+  "stationOnlySupportsCreditCards": "Cette borne ne prend en charge que le démarrage de sessions dans l'application avec une carte de crédit.",
+  "@stationOnlySupportsCreditCards": {
+    "type": "text"
+  },
+  "stationOnlySupportsRfidCards": "Cette borne prend uniquement en charge le démarrage de sessions dans l'application avec une carte de paiement RFID.",
+  "@stationOnlySupportsRfidCards": {
+    "type": "text"
+  },
+  "status": "Statut",
+  "@status": {
+    "type": "text"
+  },
+  "stepCounter": "Étape {current}/{total} :",
+  "@stepCounter": {
+    "type": "text",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "2"
+      },
+      "total": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "stopAtNearestFastChargingStation": "Arrêtez-vous à la station de recharge rapide la plus proche",
+  "@stopAtNearestFastChargingStation": {
+    "type": "text"
+  },
+  "street": "Rue",
+  "@street": {
+    "type": "text"
+  },
+  "streetIsRequired": "La rue est requise",
+  "@streetIsRequired": {
+    "type": "text"
+  },
+  "supermarket": "Supermarché",
+  "@supermarket": {
+    "type": "text"
+  },
+  "support": "Support",
+  "@support": {
+    "type": "text"
+  },
+  "supportedMethods": "Méthodes prises en charge",
+  "@supportedMethods": {
+    "type": "text"
+  },
+  "supportsRemoteCharge": "Démarrage via app possible",
+  "@supportsRemoteCharge": {
+    "type": "text"
+  },
+  "tariffNotes": "Notes tarifaires",
+  "@tariffNotes": {
+    "type": "text"
+  },
+  "taxiStand": "Station de taxi",
+  "@taxiStand": {
+    "type": "text"
+  },
+  "tdsSecureHelpsPreventFraud": "3D-Secure (3DS) permet de prévenir la fraude lors de l'utilisation de cartes de paiement en ligne.",
+  "@tdsSecureHelpsPreventFraud": {
+    "type": "text"
+  },
+  "termsOfService": "Conditions d'utilisation.",
+  "@termsOfService": {
+    "type": "text",
+    "description": "Comes after 'I accept the' Hyperlink to the terms of service"
+  },
+  "termsOfServiceOneLine": "Conditions d'utilisation",
+  "@termsOfServiceOneLine": {
+    "type": "text",
+    "description": "Single entry on account page"
+  },
+  "thereArentAnyStationsNearYou": "Il n'y a aucune station à proximité de chez vous.\n\nLa recherche automatique de localisation est toujours en cours et détectera les stations proches de vous à mesure que vous vous en rapprochez et jusqu'à ce que vous fermiez cet écran.",
+  "@thereArentAnyStationsNearYou": {
+    "type": "text"
+  },
+  "thereArentAnyStationsNearYourLocations": "Il n’y a aucune station à proximité de votre position.",
+  "@thereArentAnyStationsNearYourLocations": {
+    "type": "text"
+  },
+  "thisActionCannotBeReversed": "Cette action ne peut pas être annulée. Vous ne pourrez plus payer sur aucune borne de recharge avec cette carte.",
+  "@thisActionCannotBeReversed": {
+    "type": "text"
+  },
+  "thisActionIsPermanent": "Cette action est définitive.",
+  "@thisActionIsPermanent": {
+    "type": "text"
+  },
+  "threeEnterTheCode": "3. Saisissez le code de sécurité généré par l’application. ",
+  "@threeEnterTheCode": {
+    "type": "text"
+  },
+  "toStartAManualVerificationProcess": "pour initier une vérification manuelle.",
+  "@toStartAManualVerificationProcess": {
+    "type": "text",
+    "description": "Postfix to email address in 'Contact support at support@road.io to start a manual verification process'"
+  },
+  "totalCost": "Total Costs",
+  "@totalCost": {
+    "type": "text",
+    "description": "Label for total cost in stats widget"
+  },
+  "totalCosts": "Total Costs",
+  "@totalCosts": {
+    "type": "text"
+  },
+  "totalEnergy": "Total energy",
+  "@totalEnergy": {
+    "type": "text",
+    "description": "Label for total energy consumed in stats widget"
+  },
+  "totalSessions": "Total des sessions",
+  "@totalSessions": {
+    "type": "text",
+    "description": "Label for total number of charging sessions in stats widget"
+  },
+  "totalTime": "Total time",
+  "@totalTime": {
+    "type": "text",
+    "description": "Label for total charging time in stats widget"
+  },
+  "trainStation": "Gare",
+  "@trainStation": {
+    "type": "text"
+  },
+  "tramStop": "Arrêt de tramway",
+  "@tramStop": {
+    "type": "text"
+  },
+  "trySearchingForAnotherLocation": "Essayez de chercher un autre emplacement →",
+  "@trySearchingForAnotherLocation": {
+    "type": "text"
+  },
+  "twoFactorAuthentication": "Double authentification",
+  "@twoFactorAuthentication": {
+    "type": "text"
+  },
+  "twoFactorAuthenticationEnabled": "Double authentification activée",
+  "@twoFactorAuthenticationEnabled": {
+    "type": "text"
+  },
+  "twoScanTheQrCode": "2. Scannez le QR code avec votre application d’authentification.",
+  "@twoScanTheQrCode": {
+    "type": "text"
+  },
+  "type": "Type de connecteur",
+  "@type": {
+    "type": "text"
+  },
+  "unableToConnectToServer": "Impossible de démarrer la recharge. Veuillez réessayer plus tard.",
+  "@unableToConnectToServer": {
+    "type": "text"
+  },
+  "unavailable": "Indisponible",
+  "@unavailable": {
+    "type": "text"
+  },
+  "unblockCard": "Débloquer la carte",
+  "@unblockCard": {
+    "type": "text"
+  },
+  "undergroundGarage": "Garage souterrain",
+  "@undergroundGarage": {
+    "type": "text"
+  },
+  "unknownAddress": "Adresse inconnue",
+  "@unknownAddress": {
+    "type": "text"
+  },
+  "unknownEVSEID": "ID EVSE inconnu",
+  "@unknownEVSEID": {
+    "type": "text"
+  },
+  "unknownKW": "kW inconnu",
+  "@unknownKW": {
+    "type": "text"
+  },
+  "unknownKWh": "kWh inconnu",
+  "@unknownKWh": {
+    "type": "text"
+  },
+  "unnamedCard": "carte sans nom",
+  "@unnamedCard": {
+    "type": "text"
+  },
+  "updateBillingInformation": "Mettre à jour les informations de facturation",
+  "@updateBillingInformation": {
+    "type": "text"
+  },
+  "updateMethod": "Modifier la méthode",
+  "@updateMethod": {
+    "type": "text"
+  },
+  "updatePassword": "Mettre à jour le mot de passe",
+  "@updatePassword": {
+    "type": "text"
+  },
+  "updateProfile": "Mettre à jour le profil",
+  "@updateProfile": {
+    "type": "text"
+  },
+  "updateYourPassword": "Mettre à jour votre mot de passe",
+  "@updateYourPassword": {
+    "type": "text"
+  },
+  "usage": "Utilisation",
+  "@usage": {
+    "type": "text"
+  },
+  "useCameraToIdentifyStationId": "Utilisez la caméra pour identifier l’ID de votre borne",
+  "@useCameraToIdentifyStationId": {
+    "type": "text"
+  },
+  "useMyCurrentPosition": "Utiliser ma position actuelle",
+  "@useMyCurrentPosition": {
+    "type": "text"
+  },
+  "useYourBackupCodes": "Utilisez vos codes de récupération.",
+  "@useYourBackupCodes": {
+    "type": "text"
+  },
+  "verified": "Vérifié",
+  "@verified": {
+    "type": "text",
+    "description": "Small label that appears next to a verified profile item, e.g. phone number or e-mail"
+  },
+  "verify": "Vérifier",
+  "@verify": {
+    "type": "text"
+  },
+  "verifyEmailStepTitle": "Vérifier l’e-mail",
+  "@verifyEmailStepTitle": {
+    "type": "text"
+  },
+  "verifyPhoneStepTitle": "Vérifier téléphone",
+  "@verifyPhoneStepTitle": {
+    "type": "text"
+  },
+  "verifyYourEmailAddress": "Vérifiez votre adresse e-mail",
+  "@verifyYourEmailAddress": {
+    "type": "text"
+  },
+  "verifyYourEmailNow": "Confirmez votre adresse e-mail dès maintenant",
+  "@verifyYourEmailNow": {
+    "type": "text"
+  },
+  "verifyYourPhoneNumberNow": "Vérifiez votre numéro de téléphone dès maintenant",
+  "@verifyYourPhoneNumberNow": {
+    "type": "text"
+  },
+  "viewAllHourlyPrices": "voir tous les tarifs horaires",
+  "@viewAllHourlyPrices": {
+    "type": "text"
+  },
+  "viewAllInvoices": "Voir toutes les factures",
+  "@viewAllInvoices": {
+    "type": "text"
+  },
+  "viewAllSessions": "Voir toutes les sessions",
+  "@viewAllSessions": {
+    "type": "text"
+  },
+  "viewInvoicesForYourChargeCards": "Consultez vos factures de cartes de recharge.",
+  "@viewInvoicesForYourChargeCards": {
+    "type": "text"
+  },
+  "viewTariffNotes": "Voir les notes tarifaires",
+  "@viewTariffNotes": {
+    "type": "text"
+  },
+  "viewWallet": "Voir le portefeuille",
+  "@viewWallet": {
+    "type": "text"
+  },
+  "viewYourChargeCards": "Consultez vos cartes de recharge.",
+  "@viewYourChargeCards": {
+    "type": "text"
+  },
+  "viewYourPreviousChargingSessions": "Consultez vos sessions de recharge précédentes.",
+  "@viewYourPreviousChargingSessions": {
+    "type": "text"
+  },
+  "viewYourProfileAndAccount": "Consultez votre profile et votre compte.",
+  "@viewYourProfileAndAccount": {
+    "type": "text"
+  },
+  "wallet": "Portefeuille",
+  "@wallet": {
+    "type": "text"
+  },
+  "wantToAddYourCreditOrDebitCardLater": "Vous voulez ajouter votre carte de crédit ou de débit plus tard ?",
+  "@wantToAddYourCreditOrDebitCardLater": {
+    "type": "text"
+  },
+  "weLoggedYouInAutomatically": "Nous vous avons connecté automatiquement.",
+  "@weLoggedYouInAutomatically": {
+    "type": "text"
+  },
+  "weRecommendGoogleAuthenticator": "Nous recommandons --authoption--, --authoption-- ou --authoption--. ",
+  "@weRecommendGoogleAuthenticator": {
+    "type": "text",
+    "description": "--authoption-- is a placeholder for the authenticator app name. It will be replaced with 'Google Authenticator', 'Authy' or '1Password'. The string must split into 4 parts precisely around the auth options."
+  },
+  "weSentYouAndSmsFullNumber": "Nous vous avons envoyé un SMS au {phoneNumber}.",
+  "@weSentYouAndSmsFullNumber": {
+    "type": "text",
+    "placeholders": {
+      "phoneNumber": {
+        "type": "String",
+        "example": "+3112345678"
+      }
+    }
+  },
+  "weSentYouAnEmailVerification": "Un e-mail a été envoyé à {emailAddress}",
+  "@weSentYouAnEmailVerification": {
+    "type": "text",
+    "placeholders": {
+      "emailAddress": {
+        "type": "String",
+        "example": "john.doe@example.com"
+      }
+    }
+  },
+  "weSentYouAnSms": "Un code de vérification a été envoyé par SMS au numéro se terminant par --phonenumber--.",
+  "@weSentYouAnSms": {
+    "type": "text"
+  },
+  "whatIsYourMobilePhoenNumber": "Quel est votre numéro de téléphone mobile ?",
+  "@whatIsYourMobilePhoenNumber": {
+    "type": "text"
+  },
+  "wifi": "Wifi",
+  "@wifi": {
+    "type": "text"
+  },
+  "withoutAdditionalFeePerSession": "Sans frais supplémentaires par session",
+  "@withoutAdditionalFeePerSession": {
+    "type": "text"
+  },
+  "yesBlockCard": "Oui, bloquer la carte",
+  "@yesBlockCard": {
+    "type": "text"
+  },
+  "yesDisable2FA": "Oui, désactiver la vérification en deux étapes",
+  "@yesDisable2FA": {
+    "type": "text"
+  },
+  "yesEnableAppAuthentication": "Oui, activer la vérification via l’application.",
+  "@yesEnableAppAuthentication": {
+    "type": "text"
+  },
+  "yesEnableSMSAuthentication": "Oui, activer la vérification par SMS.",
+  "@yesEnableSMSAuthentication": {
+    "type": "text"
+  },
+  "yesRemoveAccount": "Oui, supprimer le compte",
+  "@yesRemoveAccount": {
+    "type": "text"
+  },
+  "yesRemoveCard": "Oui, supprimer la carte",
+  "@yesRemoveCard": {
+    "type": "text"
+  },
+  "yesThisIsMe": "Oui c'est moi !",
+  "@yesThisIsMe": {
+    "type": "text"
+  },
+  "youAreReadyToGo": "Vous êtes prêt à partir!",
+  "@youAreReadyToGo": {
+    "type": "text"
+  },
+  "youCanAlwaysFindNearbyStations": "You can always find nearby stations on our map.",
+  "@youCanAlwaysFindNearbyStations": {
+    "type": "text"
+  },
+  "youCanNowAddAPaymentMethod": "Vous pouvez désormais ajouter un mode de paiement et démarrer votre première recharge électrique",
+  "@youCanNowAddAPaymentMethod": {
+    "type": "text"
+  },
+  "youCanNowStartYourFirstCharge": "Vous pouvez maintenant démarrer votre première recharge électrique.",
+  "@youCanNowStartYourFirstCharge": {
+    "type": "text"
+  },
+  "youDontHaveAnyPaymentMethodsYet": "Vous n'avez pas encore de moyens de paiement.",
+  "@youDontHaveAnyPaymentMethodsYet": {
+    "type": "text"
+  },
+  "youHaventAddedAnyCardsYet": "Vous n'avez pas encore ajouté de cartes.",
+  "@youHaventAddedAnyCardsYet": {
+    "type": "text"
+  },
+  "youHaventChargedYourEVYet": "Vous n'avez pas encore chargé votre véhicule électrique.",
+  "@youHaventChargedYourEVYet": {
+    "type": "text"
+  },
+  "youMayAlsoEnterTheKeyManually": "Vous pouvez également saisir la clé manuellement : ",
+  "@youMayAlsoEnterTheKeyManually": {
+    "type": "text"
+  },
+  "yourCarIsCharging": "Votre voiture se recharge",
+  "@yourCarIsCharging": {
+    "type": "text"
+  },
+  "youreAllReadyToBegin": "Vous êtes tous prêts à commencer votre première session de recharge.",
+  "@youreAllReadyToBegin": {
+    "type": "text"
+  },
+  "yourFavouriteStationsWillShowUpHere": "Retrouvez ici vos stations favorites, avec leur disponibilité en temps réel.",
+  "@yourFavouriteStationsWillShowUpHere": {
+    "type": "text"
+  },
+  "youWillAddYourPaymentDetails": "Vous ajouterez vos données de paiement à l'étape suivante.",
+  "@youWillAddYourPaymentDetails": {
+    "type": "text"
+  }
+}

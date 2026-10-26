@@ -1,0 +1,29 @@
+cat >> .gitignore <<'EOF'
+
+# Flutter and Dart generated files
+.dart_tool/
+.packages
+.pub/
+build/
+
+# Android generated files
+android/.gradle/
+android/app/build/
+
+# iOS generated dependencies and build files
+ios/Pods/
+ios/build/
+
+# Do not upload oversized Xcode project file
+ios/Runner.xcodeproj/project.pbxproj
+EOF
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Android local configuration and signing credentials
+android/key.properties
+android/local.properties
+android/*.keystore
+android/*.jks
