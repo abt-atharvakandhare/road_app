@@ -39,6 +39,8 @@ extension RMColors on Colors {
 
   static Color get rmPrimaryColor {
     switch (F.appFlavor) {
+      case Flavor.abt:
+        return const Color(0xFF4070C5);
       case Flavor.eflux:
         return const Color(0xFFFF3D00);
       case Flavor.elexon:
@@ -68,6 +70,8 @@ extension RMColors on Colors {
 
   static Color get rmPrimaryColorSplashScreenGradientStart {
     switch (F.appFlavor) {
+      case Flavor.abt:
+        return const Color(0xFF779DEA);
       case Flavor.eflux:
         return const Color(0xFFFF3D00);
       case Flavor.elexon:
@@ -97,6 +101,8 @@ extension RMColors on Colors {
 
   static Color get rmPrimaryColorSplashScreenGradientEnd {
     switch (F.appFlavor) {
+      case Flavor.abt:
+        return const Color(0xFF3E66BB);
       case Flavor.eflux:
         return const Color(0xFFFF8500);
       case Flavor.elexon:
@@ -126,6 +132,8 @@ extension RMColors on Colors {
 
   static Color get rmPrimaryColorAppGradientStart {
     switch (F.appFlavor) {
+      case Flavor.abt:
+        return const Color(0xFF91AFEA);
       case Flavor.eflux:
         return const Color(0xFFFF3D00);
       case Flavor.elexon:
@@ -155,6 +163,8 @@ extension RMColors on Colors {
 
   static Color get rmPrimaryColorAppGradientEnd {
     switch (F.appFlavor) {
+      case Flavor.abt:
+        return const Color(0xFF4585FF);
       case Flavor.eflux:
         return const Color(0xFFFF8500);
       case Flavor.elexon:
@@ -184,6 +194,19 @@ extension RMColors on Colors {
 
   static MaterialColor get primarySwatch {
     switch (F.appFlavor) {
+      case Flavor.abt:
+        return const MaterialColor(0xFFFF3D00, <int, Color>{
+          50: Color(0xFFA6C2F5),
+          100: Color(0xFF779DEA),
+          200: Color(0xFF5281CC),
+          300: Color(0xFF2C5EAB),
+          400: Color(0xFF265EBE),
+          500: Color(0xFF2452BE),
+          600: Color(0xFF2D74EE),
+          700: Color(0xFF0C51BB),
+          800: Color(0xFF0849AF),
+          900: Color(0xFF0F3383),
+        });
       case Flavor.eflux:
         return const MaterialColor(0xFFFF3D00, <int, Color>{
           50: Color(0xFFFFF3E0),

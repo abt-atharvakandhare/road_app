@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "513984038314",
+    "project_id": "abttest-75397",
+    "storage_bucket": "abttest-75397.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513984038314:android:1e58caaac2fb933a7fd7d3",
+        "android_client_info": {
+          "package_name": "com.andro.abt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZTsaLGBtzHXDu6woatVsKRzLqY6EF7i4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

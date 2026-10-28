@@ -1,6 +1,7 @@
 enum MapBrandFilterType { showAllFilterToBrand, showBrandFilterToAll, showBrandOnly }
 
 enum Flavor {
+  abt,
   eflux,
   elexon,
   opcharge,
@@ -22,6 +23,8 @@ class F {
 
   static String get title {
     switch (appFlavor) {
+      case Flavor.abt:
+        return 'ABT Test';
       case Flavor.eflux:
         return 'E-Flux EV';
       case Flavor.elexon:
@@ -56,6 +59,8 @@ class F {
   /// into a white-label build.
   static String brandNameOf(Flavor flavor) {
     switch (flavor) {
+      case Flavor.abt:
+        return 'ABT Test';
       case Flavor.eflux:
         return 'E-Flux';
       case Flavor.elexon:
@@ -85,6 +90,8 @@ class F {
 
   static MapBrandFilterType get mapBrandFilterType {
     switch (appFlavor) {
+      case Flavor.abt:
+        return MapBrandFilterType.showAllFilterToBrand;
       case Flavor.eflux:
         return MapBrandFilterType.showAllFilterToBrand;
       case Flavor.elexon:
@@ -114,6 +121,8 @@ class F {
 
   static String get providerName {
     switch (appFlavor) {
+      case Flavor.abt:
+        return 'abt';
       case Flavor.eflux:
         return 'e-flux';
       case Flavor.elexon:
@@ -153,6 +162,8 @@ class F {
 
   static bool get isRemoteChargeEnabled {
     switch (appFlavor) {
+      case Flavor.abt:
+        return false;
       case Flavor.eflux:
       case Flavor.opcharge:
       case Flavor.friwigo:
