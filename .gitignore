@@ -37,3 +37,7 @@ ios/Flutter/ephemeral/
 
 # Firebase generated metadata
 ios/firebase_app_id_file.json
+
+# Exclude corrupted or oversized Xcode project files
+ios/Runner.xcodeproj.backup/
+ios/Runner.xcodeproj/project.pbxproj
